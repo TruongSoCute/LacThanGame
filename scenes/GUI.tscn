@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceawyxb6yanfc"]
+
+[ext_resource type="Script" uid="uid://d2pnd5f7otcif" path="res://scripts/gui.gd" id="1_womn8"]
+[ext_resource type="Texture2D" uid="uid://6cn4tr1nf1ot" path="res://assets(test)/UI/Sprites/HeartSpriteSheet.png" id="2_shsct"]
+[ext_resource type="Texture2D" uid="uid://iwkyij3et830" path="res://assets(test)/UI/soul_bar.png" id="3_tqy5q"]
+[ext_resource type="Texture2D" uid="uid://bk8nkb5tjw2t0" path="res://assets/ui/Lúa item buy 1.png" id="4_shsct"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_womn8")
+
+[node name="heart" type="Sprite2D" parent="."]
+position = Vector2(88, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("2_shsct")
+hframes = 5
+
+[node name="soul_bar" type="Sprite2D" parent="."]
+position = Vector2(40, 32)
+texture = ExtResource("3_tqy5q")
+hframes = 5
+
+[node name="coin" type="Sprite2D" parent="."]
+position = Vector2(50, 90.833336)
+scale = Vector2(0.798, 0.798)
+texture = ExtResource("4_shsct")
+
+[node name="coin_value" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 72.0
+offset_right = 166.26086
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
