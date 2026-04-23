@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cal4ab2hb2fo4" path="res://enemy/enemy_sau.tscn" id="10_skxlf"]
 [ext_resource type="PackedScene" uid="uid://xyp1lro7v2mb" path="res://enemy/enemy_oc.tscn" id="11_hdc4k"]
 [ext_resource type="Script" uid="uid://dgoyqb81sc227" path="res://scripts/path_follow.gd" id="12_aive4"]
+[ext_resource type="Script" uid="uid://parallax_script_id" path="res://scripts/parallax_bg.gd" id="13_parallax"]
 
 [sub_resource type="Curve2D" id="Curve2D_6jaql"]
 _data = {
@@ -43,8 +44,11 @@ is_attacking = false
 [node name="GUI" parent="." instance=ExtResource("2_k4ctk")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("13_parallax")
 
 [node name="Dong_00" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(3418, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Dong_00"]
 position = Vector2(-16, -8)
@@ -52,6 +56,8 @@ scale = Vector2(1.7814815, 1.7814815)
 texture = ExtResource("3_skxlf")
 
 [node name="Dong_01" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(3418, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Dong_01"]
 position = Vector2(-72, -1.9073486e-06)
@@ -59,6 +65,8 @@ scale = Vector2(1.7740741, 1.7740741)
 texture = ExtResource("4_hdc4k")
 
 [node name="Dong_02" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(3418, 0)
 
 [node name="vach1" type="Sprite2D" parent="ParallaxBackground/Dong_02"]
 position = Vector2(-3584, -432)

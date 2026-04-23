@@ -23,6 +23,8 @@ config/icon="uid://ckyrvkn70a0sc"
 
 Globals="*res://scripts/globals.gd"
 SceneManager="*res://global/scene_manager.gd"
+Localization="*res://lang/localization_manager.gd"
+AudioManager="*res://global/audio_manager.gd"
 
 [display]
 

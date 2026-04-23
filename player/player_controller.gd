@@ -8,9 +8,17 @@ extends CharacterBody2D
 var movement = Vector2()
 
 @export_category("Jump Variable")
-@export var jump_force: float = 250.0
-@export var acceleration: float = 290.0
-@export var jump_amount: int = 2
+@export var jump_force: float = 300.0
+@export var double_jump_force: float = 280.0
+@export var jump_max_amount: int = 2
+@export var coyote_time: float = 0.15
+@export var jump_buffer_time: float = 0.15
+@export var fall_gravity_multiplier: float = 1.8
+@export var jump_cut_multiplier: float = 2.5
+
+var jump_amount: int = 0
+var coyote_timer: float = 0.0
+var jump_buffer_timer: float = 0.0
 
 @export_category("Wall Jump Variable")
 @export var wall_slide: float = 20.0
@@ -43,12 +51,19 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#Add Gravity
+	# Gravity logic
 	if Globals.health <= 0:
 		dead()
 	else:
-		if is_dasing == false:
-			velocity.y += gravity * delta
-		elif is_dasing == true:
+		if not is_dasing:
+			var current_gravity = gravity
+			if velocity.y > 0: # Falling
+				current_gravity *= fall_gravity_multiplier
+			elif velocity.y < 0 and not Input.is_action_pressed("jump"): # Short jump
+				current_gravity *= jump_cut_multiplier
+			
+			velocity.y += current_gravity * delta
+		else:
 			velocity.y = dash_gravity
 	
 	horizontal_movement()
@@ -65,7 +80,7 @@ func _input(_event: InputEvent) -> void:
 		is_attacking = true
 
 func horizontal_movement():
-	if is_wall_jumping == false and is_dasing == false: 
+	if is_wall_jumping == false and is_dasing == false and is_holding == false: 
 		movement = Input.get_axis("move_left", "move_right")
 		
 		if movement:
@@ -106,36 +121,52 @@ func flip():
 		scale.x = scale.y * -1
 		wall_x_force = -200.0
 
-#Jump & Double Jump Function
+# Jump & Double Jump Function
 func jump_logic():
-	if is_on_floor():
-		dash_number = 1
-		jump_amount = 2
-		if Input.is_action_just_pressed("jump"):
-			jump_amount -= 1
-			# Set trực tiếp vận tốc nhảy thay vì trừ, tạo lực nhảy cố định khi ở trên đất
-			velocity.y = -jump_force
+	if is_holding: return
+	var delta = get_physics_process_delta_time()
 	
-	if not is_on_floor():
-		if jump_amount > 0:
-			if Input.is_action_just_pressed("jump"):
-				jump_amount -= 1
-				# Double jump cũng set trực tiếp bằng lực acceleration (theo logic cũ của bạn là lực mạnh hơn)
-				velocity.y = -acceleration
-			
-		# Xử lý nhảy ngắn/cao tuỳ theo thời gian giữ phím (variable jump height)
-		if Input.is_action_just_released("jump") and velocity.y < 0:
-			velocity.y *= 0.3
+	# Coyote Time Timer
+	if is_on_floor():
+		coyote_timer = coyote_time
+		jump_amount = jump_max_amount
+		dash_number = 1
+	else:
+		coyote_timer -= delta
+		
+	# Jump Buffer Timer
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer = jump_buffer_time
+	else:
+		jump_buffer_timer -= delta
+		
+	# Perform Jump
+	if jump_buffer_timer > 0:
+		# Ground Jump (including Coyote Time)
+		if coyote_timer > 0:
+			perform_jump(jump_force)
+			coyote_timer = 0 # Consume coyote time
+		# Double Jump
+		elif jump_amount > 0:
+			perform_jump(double_jump_force)
+
+func perform_jump(force: float):
+	velocity.y = -force
+	jump_amount -= 1
+	jump_buffer_timer = 0 # Consume buffer
 		
 func wall_logic():
 #Wall Slide
 	if is_on_wall_only():
 		velocity.y = wall_slide
-		if Input.is_action_just_pressed("jump"):
-			if right_ray.is_colliding():
-				jump_amount = 2
-				velocity = Vector2(-wall_x_force, wall_y_force)
-				wall_jump()
+		if jump_buffer_timer > 0:
+			var wall_normal = get_wall_normal()
+			# Wall jump pushes away from the wall
+			velocity.x = wall_normal.x * abs(wall_x_force)
+			velocity.y = wall_y_force
+			jump_amount = jump_max_amount - 1
+			jump_buffer_timer = 0
+			wall_jump()
 
 func wall_jump():
 	is_wall_jumping = true
@@ -173,12 +204,17 @@ func dead():
 
 ##Ham chuc nang hoi phuc
 func healing(delta: float):
-	if Input.is_action_just_pressed("healing"):
+	if Input.is_action_just_pressed("healing") and is_on_floor():
 		is_holding = true
 		hold_timer = 0.0
 	
 	if is_holding:
-		velocity = Vector2.ZERO
+		if not is_on_floor():
+			is_holding = false
+			hold_timer = 0.0
+			return
+			
+		velocity.x = 0
 		$AnimatedSprite2D.play("idle")
 		if Input.is_action_pressed("healing") and hold_timer <= hold_time:
 			hold_timer += delta		
@@ -192,4 +228,3 @@ func can_healing():
 	if Globals.soul >= 0.25:
 		Globals.health += 1
 		Globals.soul -= 0.25
-		

@@ -33,7 +33,7 @@ offset_bottom = 581.0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
-text = "START"
+text = "KEY_START"
 icon = SubResource("ImageTexture_ekxnf")
 
 [node name="option" type="Button" parent="Button Manager"]
@@ -43,7 +43,7 @@ offset_top = 624.0
 offset_right = 1246.0
 offset_bottom = 728.0
 theme_override_font_sizes/font_size = 32
-text = "OPTION"
+text = "KEY_OPTION"
 
 [node name="exit" type="Button" parent="Button Manager"]
 layout_mode = 0
@@ -52,7 +52,7 @@ offset_top = 778.0
 offset_right = 1247.0
 offset_bottom = 882.0
 theme_override_font_sizes/font_size = 32
-text = "EXIT"
+text = "KEY_EXIT"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://brtokymnpdx76" path="res://assets/background/ruong_02_may.png" id="3_kip3e"]
 [ext_resource type="PackedScene" uid="uid://defrmyckc6ry2" path="res://player/player.tscn" id="5_rbjax"]
 [ext_resource type="PackedScene" uid="uid://bdw3k6w1p3i4p" path="res://scenes/level_transition.tscn" id="6_7ra4i"]
+[ext_resource type="Script" uid="uid://parallax_script_id" path="res://scripts/parallax_bg.gd" id="7_parallax"]
 
 [node name="level_0" type="Node2D"]
 
@@ -31,23 +32,30 @@ position = Vector2(-2152, 264)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("7_parallax")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0.05)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(40, -192)
+position = Vector2(40, 200)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_7ra4i")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(-48.00003, 72)
-scale = Vector2(0.85555553, 0.85555553)
+position = Vector2(-48.00003, 350)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_wb01y")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(0, 50)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("3_kip3e")
 
 [node name="LevelTransition" parent="." instance=ExtResource("6_7ra4i")]

@@ -6,12 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://xencfu85l02q" path="res://assets/background/Dong_vach2.png" id="4_5s7t0"]
 [ext_resource type="TileSet" uid="uid://cj5sr74wi1e48" path="res://level/tilemap.tres" id="5_dbnb4"]
 [ext_resource type="PackedScene" uid="uid://defrmyckc6ry2" path="res://player/player.tscn" id="6_h3kf3"]
+[ext_resource type="Script" uid="uid://parallax_script_id" path="res://scripts/parallax_bg.gd" id="7_parallax"]
 
 [node name="level_boss" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("7_parallax")
 
 [node name="Dong_00" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(3418, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Dong_00"]
 position = Vector2(-16, -8)
@@ -20,6 +24,8 @@ texture = ExtResource("1_r86wa")
 
 [node name="Dong_01" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(3418, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Dong_01"]
 position = Vector2(-72, -1.9073486e-06)
@@ -27,6 +33,8 @@ scale = Vector2(1.7740741, 1.7740741)
 texture = ExtResource("2_ldqby")
 
 [node name="Dong_02" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(3418, 0)
 
 [node name="vach1" type="Sprite2D" parent="ParallaxBackground/Dong_02"]
 position = Vector2(-1360, -400)
