@@ -207,13 +207,18 @@ func add_to_outline_if_selected(btn: Button, action: Callable):
 
 func update_outline_button_order():
 	var all_buttons: Array[Button] = [engine_func_btn, func_btn, signal_btn, export_btn, property_btn, class_btn, constant_btn]
-	all_buttons.sort_custom(sort_buttons_by_outline_order)
+	var valid_buttons: Array[Button] = []
+	for btn in all_buttons:
+		if btn != null:
+			valid_buttons.append(btn)
+			
+	valid_buttons.sort_custom(sort_buttons_by_outline_order)
 
-	for btn: Button in all_buttons:
+	for btn: Button in valid_buttons:
 		if (btn.get_parent() != null):
 			filter_box.remove_child(btn)
 
-	for btn: Button in all_buttons:
+	for btn: Button in valid_buttons:
 		filter_box.add_child(btn)
 
 func sort_buttons_by_outline_order(btn1: Button, btn2: Button) -> bool:

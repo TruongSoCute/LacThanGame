@@ -13,14 +13,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	soul_regeneration()
 	coin_label.text = str(Globals.coins)
 	
 	for heart in $heart.get_children():
 		var index = heart.get_index()
 		var x = (index % HEART_ROW_SIZE) * HEART_OFFSET
-		var y = (index / HEART_ROW_SIZE) * HEART_OFFSET
+		var y = int(index / float(HEART_ROW_SIZE)) * HEART_OFFSET
 		heart.position = Vector2(x,y)
 		
 		var last_heart = floor(Globals.health)

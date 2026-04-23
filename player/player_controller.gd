@@ -2,29 +2,29 @@ class_name Player
 extends CharacterBody2D
 
 @export_category("Movement Variable")
-@export var move_speed = 120.0
-@export var deceleration = 0.1
-@export var gravity = 500.0
+@export var move_speed: float = 120.0
+@export var deceleration: float = 0.1
+@export var gravity: float = 500.0
 var movement = Vector2()
 
 @export_category("Jump Variable")
-@export var jump_force = 190.0
-@export var acceleration = 290.0
-@export var jump_amount = 2
+@export var jump_force: float = 250.0
+@export var acceleration: float = 290.0
+@export var jump_amount: int = 2
 
 @export_category("Wall Jump Variable")
-@export var wall_slide = 20
+@export var wall_slide: float = 20.0
 @onready var left_ray: RayCast2D = $raycast/left_ray
 @onready var right_ray: RayCast2D = $raycast/right_ray
-@export var wall_x_force = 200.0
-@export var wall_y_force = -220.0
+@export var wall_x_force: float = 200.0
+@export var wall_y_force: float = -220.0
 var is_wall_jumping = false
 
 @export_category("Dash Variable")
-@export var dash_speed = 400.0
-@export var facing_right = true
-@export var dash_gravity = 0
-@export var dash_number = 1
+@export var dash_speed: float = 400.0
+@export var facing_right: bool = true
+@export var dash_gravity: float = 0.0
+@export var dash_number: int = 1
 var dash_key_pressed = 0
 var is_dasing = false
 var dash_timer = Timer
@@ -40,12 +40,6 @@ var is_holding = false
 
 func _ready() -> void:
 	$sword/CollisionShape2D.disabled = true
-		
-## Bị lỗi trùng player khi trans - Xóa player đã đặt sẵn trong scene
-	#if get_tree().get_first_node_in_group("Player") != self:
-		#self.queue_free()
-## Người chơi tự reparent lại khi chuyển scene 
-	#self.call_deferred( "reparent",get_tree().root)
 
 func _physics_process(delta: float) -> void:
 	#Add Gravity
@@ -66,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	healing(delta)
 	move_and_slide()
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("melee_attack"):
 		is_attacking = true
 
@@ -119,28 +113,25 @@ func jump_logic():
 		jump_amount = 2
 		if Input.is_action_just_pressed("jump"):
 			jump_amount -= 1
-			velocity.y -= lerp(jump_force, acceleration, 0.1)
+			# Set trực tiếp vận tốc nhảy thay vì trừ, tạo lực nhảy cố định khi ở trên đất
+			velocity.y = -jump_force
 	
 	if not is_on_floor():
 		if jump_amount > 0:
 			if Input.is_action_just_pressed("jump"):
 				jump_amount -= 1
-				velocity.y -= lerp(jump_force, acceleration, 1)
+				# Double jump cũng set trực tiếp bằng lực acceleration (theo logic cũ của bạn là lực mạnh hơn)
+				velocity.y = -acceleration
 			
-			if Input.is_action_just_released("jump"):
-				velocity.y = lerp(velocity.y, gravity, 0.2)
-				velocity.y *= 0.3
-	else:
-		return
+		# Xử lý nhảy ngắn/cao tuỳ theo thời gian giữ phím (variable jump height)
+		if Input.is_action_just_released("jump") and velocity.y < 0:
+			velocity.y *= 0.3
 		
 func wall_logic():
 #Wall Slide
 	if is_on_wall_only():
 		velocity.y = wall_slide
 		if Input.is_action_just_pressed("jump"):
-			#if left_ray.is_colliding():
-				#velocity = Vector2(wall_x_force, wall_y_force)
-				#wall_jump()
 			if right_ray.is_colliding():
 				jump_amount = 2
 				velocity = Vector2(-wall_x_force, wall_y_force)
@@ -188,7 +179,7 @@ func healing(delta: float):
 	
 	if is_holding:
 		velocity = Vector2.ZERO
-		$anim.play("idle")
+		$AnimatedSprite2D.play("idle")
 		if Input.is_action_pressed("healing") and hold_timer <= hold_time:
 			hold_timer += delta		
 		else:
