@@ -62,11 +62,17 @@ func _ready() -> void:
 		"dash": "res://assets/sfx/Coi/coi_dash_1.wav",
 		"death": "res://assets/sfx/Coi/coi_death.wav",
 		"damage": "res://assets/sfx/Coi/coi_take_damage.wav",
-		"attack": "res://assets/sfx/Coi/sword_1.wav",
+		"attack_miss": "res://assets/sfx/Coi/sword_4.wav",
+		"attack_hit_1": "res://assets/sfx/Coi/sword_1.wav",
+		"attack_hit_2": "res://assets/sfx/Coi/sword_2.wav",
+		"attack_hit_3": "res://assets/sfx/Coi/sword_3.wav",
 		"landing": "res://assets/sfx/Coi/coi_landing.wav",
 		"wall_slide": "res://assets/sfx/Coi/coi_wall_slide.mp3",
 		"footstep": "res://assets/sfx/Coi/coi_footstep_grass.wav"
 	}
+	
+	if has_node("sword"):
+		$sword.area_entered.connect(_on_sword_hit)
 	
 	for key in sounds:
 		var player = AudioStreamPlayer2D.new()
@@ -74,9 +80,7 @@ func _ready() -> void:
 		add_child(player)
 		sfx_players[key] = player
 
-func _physics_process(delta: float) -> void:
-	#Add Gravity
-	# Gravity logic
+func _physics_process(delta: float) -> void: 
 	if Globals.health <= 0 or is_dead:
 		if not is_dead:
 			dead()
@@ -126,7 +130,7 @@ func _physics_process(delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("melee_attack") and not is_attacking and not is_holding and not is_on_wall_only():
 		is_attacking = true
-		sfx_players["attack"].play()
+		sfx_players["attack_miss"].play()
 		$anim.play("Attack")
 
 func horizontal_movement():
@@ -141,6 +145,13 @@ func horizontal_movement():
 		dash_number -= 1
 		dash_key_pressed = 1
 		dash()
+
+func _on_sword_hit(area: Area2D):
+	if area.is_in_group("enemy") or (area.get_parent() and area.get_parent().is_in_group("Enemy")):
+		if sfx_players["attack_miss"].playing:
+			sfx_players["attack_miss"].stop()
+		var random_index = randi() % 3 + 1
+		sfx_players["attack_hit_" + str(random_index)].play()
 
 # Chạy với Animation cũ
 func set_animation():
