@@ -19,7 +19,7 @@ func _ready():
 		health_bar.max_value = health
 		health_bar.value = health
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if health <= 0:
 		_die()
 		return

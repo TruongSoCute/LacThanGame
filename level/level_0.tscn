@@ -125,7 +125,6 @@ rotation = 3.0944579
 script = ExtResource("10_pathfollow")
 
 [node name="Enemy_Oc1" parent="Enemy/Oc Enemy/Path2D/PathFollow2D" unique_id=1858393561 instance=ExtResource("9_oc")]
-rotation = 3.1415925
 
 [node name="LevelTransition" parent="." unique_id=1100142248 instance=ExtResource("6_7ra4i")]
 position = Vector2(6400, 648)

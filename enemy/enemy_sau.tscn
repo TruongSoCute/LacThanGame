@@ -24,7 +24,7 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4]
 }
-}
+
 
 [sub_resource type="Animation" id="Animation_1dota"]
 length = 0.001

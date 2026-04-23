@@ -21,6 +21,7 @@ var is_on_path = false
 var last_pos: Vector2
 
 func _ready():
+	print("DEBUG: Worm spawned at ", global_position, " is_on_path: ", get_parent() is PathFollow2D)
 	is_on_path = get_parent() is PathFollow2D
 	last_pos = global_position
 	if health_bar:
