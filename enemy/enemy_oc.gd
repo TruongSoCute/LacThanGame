@@ -28,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 		var pf = get_parent()
 		if pf is PathFollow2D and "is_waiting" in pf and pf.is_waiting:
 			if anim:
-				anim.play("Idle")
+				anim.play("RESET")
 		else:
 			if anim:
 				anim.play("move")

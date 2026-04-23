@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_path:
 		var pf = get_parent()
 		if pf is PathFollow2D and "is_waiting" in pf and pf.is_waiting:
-			$anim.play("Idle")
+			$anim.play("RESET")
 		else:
 			$anim.play("move")
 		# Tự động quay mặt theo hướng di chuyển trên Path
