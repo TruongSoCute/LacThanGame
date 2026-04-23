@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://d17t718ol1x4i"]
-
-[node name="LevelDoor" type="Area2D"]
-visible = false
-collision_layer = 16
-collision_mask = 16

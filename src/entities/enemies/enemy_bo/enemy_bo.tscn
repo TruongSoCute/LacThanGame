@@ -1,0 +1,145 @@
+[gd_scene load_steps=9 format=3 uid="uid://dglhsr0g5y47"]
+
+[ext_resource type="Texture2D" uid="uid://babg0ln0sifwi" path="res://src/entities/enemies/enemy_bo/sprites/Frame 8.png" id="1_n3tjy"]
+[ext_resource type="Script" path="res://src/entities/enemies/enemy_bo/enemy_bo.gd" id="2_bo_script"]
+[ext_resource type="PackedScene" uid="uid://c8n4y8n4y8n4y" path="res://src/components/health_bar/health_bar.tscn" id="3_health"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mc6w4"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hitbox"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
+radius = 350.0
+
+[sub_resource type="Animation" id="Animation_move"]
+resource_name = "move"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bo"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"attack": SubResource("Animation_attack"),
+&"move": SubResource("Animation_move")
+}
+
+[node name="Enemy_Bo" type="CharacterBody2D" groups=["Enemy"]]
+collision_mask = 1
+script = ExtResource("2_bo_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_n3tjy")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mc6w4")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bo")
+}
+
+[node name="left_raycast" type="RayCast2D" parent="."]
+target_position = Vector2(-48, 0)
+collision_mask = 1
+
+[node name="right_raycast" type="RayCast2D" parent="."]
+target_position = Vector2(48, 0)
+collision_mask = 1
+
+[node name="floor_ray_left" type="RayCast2D" parent="."]
+position = Vector2(-32, 0)
+target_position = Vector2(0, 40)
+collision_mask = 1
+
+[node name="floor_ray_right" type="RayCast2D" parent="."]
+position = Vector2(32, 0)
+target_position = Vector2(0, 40)
+collision_mask = 1
+
+[node name="DetectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
+shape = SubResource("CircleShape2D_detect")
+debug_color = Color(1, 1, 0, 0.1)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_hitbox")
+debug_color = Color(0.1, 0.6, 0.6, 0.42)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_hitbox")
+debug_color = Color(0.8, 0.2, 0.2, 0.42)
+
+[node name="ShootPoint" type="Marker2D" parent="."]
+position = Vector2(30, -5)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="HealthBar" parent="." instance=ExtResource("3_health")]
+position = Vector2(0, -100)
+
+[connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
+[connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

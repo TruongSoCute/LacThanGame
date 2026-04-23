@@ -21,10 +21,10 @@ config/icon="uid://ckyrvkn70a0sc"
 
 [autoload]
 
-Globals="*res://scripts/globals.gd"
-SceneManager="*res://global/scene_manager.gd"
-Localization="*res://lang/localization_manager.gd"
-AudioManager="*res://global/audio_manager.gd"
+Globals="*res://src/core/globals.gd"
+SceneManager="*res://src/core/scene_manager.gd"
+Localization="*res://src/core/localization_manager.gd"
+AudioManager="*res://src/core/audio_manager.gd"
 
 [display]
 
