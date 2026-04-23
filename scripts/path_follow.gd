@@ -7,6 +7,9 @@ var direction = 1
 var is_waiting = false
 var wait_timer = 0.0
 
+func _ready() -> void:
+	loop = false
+
 func _process(delta: float) -> void:
 	if not get_parent() is Path2D:
 		return

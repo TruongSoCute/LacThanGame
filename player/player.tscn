@@ -710,6 +710,8 @@ position = Vector2(-1, 9)
 shape = SubResource("CapsuleShape2D_32hag")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+hframes = 10
+vframes = 6
 visible = false
 
 [node name="anim" type="AnimationPlayer" parent="."]
