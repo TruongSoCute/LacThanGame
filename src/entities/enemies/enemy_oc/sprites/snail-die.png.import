@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blry6s0d6l1dn"
-path="res://.godot/imported/snail-die.png-e97be21349b985c9c440b517c2c2ad78.ctex"
+uid="uid://dgjp4wgex1i7f"
+path="res://.godot/imported/snail-die.png-dbcd8a7d0aefd93ba100dbc96e7fde92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UpdatedAssets/Enemy/snail-die.png"
-dest_files=["res://.godot/imported/snail-die.png-e97be21349b985c9c440b517c2c2ad78.ctex"]
+source_file="res://src/entities/enemies/enemy_oc/sprites/snail-die.png"
+dest_files=["res://.godot/imported/snail-die.png-dbcd8a7d0aefd93ba100dbc96e7fde92.ctex"]
 
 [params]
 

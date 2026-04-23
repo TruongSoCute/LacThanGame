@@ -1,17 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8n4y8n4y8n4y"]
+[gd_scene format=3 uid="uid://c8n4y8n4y8n4y"]
 
-[ext_resource type="Script" uid="uid://8v4j8j8j8j8j" path="res://src/ui/hud/health_bar.gd" id="1_health"]
+[ext_resource type="Script" uid="uid://4wbwjg8j2gpy" path="res://src/ui/hud/health_bar.gd" id="1_health"]
 
-[node name="HealthBar" type="Control"]
+[node name="HealthBar" type="Control" unique_id=2041284589]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 100.0
 offset_bottom = 10.0
 script = ExtResource("1_health")
-max_value = 5.0
-value = 5.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=33405083]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 10.0

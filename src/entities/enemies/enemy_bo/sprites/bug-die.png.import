@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtjvy4nvye6v0"
-path="res://.godot/imported/Dash.png-46858b96582fd0bf11ab669779419427.ctex"
+uid="uid://dr13uq10plw6w"
+path="res://.godot/imported/bug-die.png-c8be3d042ab9f1e739ff93e55ab10033.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UpdatedAssets/Character/Dash.png"
-dest_files=["res://.godot/imported/Dash.png-46858b96582fd0bf11ab669779419427.ctex"]
+source_file="res://src/entities/enemies/enemy_bo/sprites/bug-die.png"
+dest_files=["res://.godot/imported/bug-die.png-c8be3d042ab9f1e739ff93e55ab10033.ctex"]
 
 [params]
 

@@ -32,7 +32,7 @@ var is_wall_jumping = false
 @export var dash_speed: float = 600.0
 @export var facing_right: bool = true
 @export var dash_gravity: float = 0.0
-@export var dash_number: int = 2
+@export var dash_number: int = 1
 var dash_key_pressed = 0
 var is_dasing = false
 var dash_timer = Timer
@@ -267,7 +267,7 @@ func dash_started():
 		sfx_players["dash"].play()
 		spawn_dash_vfx()
 		dash_key_pressed = 1
-		await get_tree().create_timer(0.25).timeout
+		await get_tree().create_timer(0.2).timeout
 		is_dasing = false
 		dash_key_pressed = 0
 	else:
@@ -285,6 +285,9 @@ func reset_states():
 func dead():
 	is_dead = true
 	sfx_players["death"].play()
+	$anim.play("Die")
+	await $anim.animation_finished
+	await get_tree().create_timer(1.0).timeout
 	Globals.player_died.emit()
 
 func take_damage(amount: float):

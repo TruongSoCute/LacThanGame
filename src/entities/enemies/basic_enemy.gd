@@ -11,6 +11,7 @@ class_name BasicEnemy extends CharacterBody2D
 
 var is_on_path: bool = false
 var last_pos: Vector2
+var is_dead: bool = false
 
 func _ready():
 	is_on_path = get_parent() is PathFollow2D
@@ -26,8 +27,9 @@ func _setup_enemy():
 	pass
 
 func _physics_process(delta: float) -> void:
-	if health <= 0:
-		_die()
+	if health <= 0 or is_dead:
+		if not is_dead:
+			_die()
 		return
 
 	if is_on_path:
@@ -84,10 +86,27 @@ func _apply_knockback():
 func _flash_hit():
 	sprite.modulate = Color(1, 0.3, 0.3)
 	await get_tree().create_timer(0.15).timeout
-	if is_instance_valid(self):
+	if is_instance_valid(self ):
 		sprite.modulate = Color(1, 1, 1)
 
 func _die():
+	is_dead = true
+	collision_layer = 0
+	collision_mask = 0
+	
+	for child in get_children():
+		if child is Area2D:
+			child.set_deferred("monitoring", false)
+			child.set_deferred("monitorable", false)
+		if child is CollisionShape2D or child is CollisionPolygon2D:
+			child.set_deferred("disabled", true)
+	
+	if health_bar:
+		health_bar.visible = false
+		
+	if anim and anim.has_animation("die"):
+		anim.play("die")
+		await anim.animation_finished
 	queue_free()
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:

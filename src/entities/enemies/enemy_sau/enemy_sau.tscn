@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cojcbn8mhvvyt" path="res://src/entities/enemies/enemy_sau/sprites/Frame 1.png" id="1_3uef1"]
 [ext_resource type="Script" uid="uid://8l63co6c2owg" path="res://src/entities/enemies/enemy_sau/enemy_sau.gd" id="1_uyru7"]
 [ext_resource type="PackedScene" uid="uid://c8n4y8n4y8n4y" path="res://src/components/health_bar/health_bar.tscn" id="2_health"]
+[ext_resource type="Texture2D" uid="uid://bslt6veiabs2" path="res://src/entities/enemies/enemy_sau/sprites/worm-die.png" id="3_die"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uyru7"]
 radius = 32.0
@@ -40,11 +41,77 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_3uef1")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_die"]
+resource_name = "die"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_die")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqe8r"]
 _data = {
-&"RESET": SubResource("Animation_1dota"),
-&"move": SubResource("Animation_uyru7")
+"RESET": SubResource("Animation_1dota"),
+"die": SubResource("Animation_die"),
+"move": SubResource("Animation_uyru7")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1dota"]

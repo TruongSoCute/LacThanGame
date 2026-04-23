@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bttcgr3skli86"
-path="res://.godot/imported/worm.png-d4c1820a3aad150784518982c96016c1.ctex"
+uid="uid://bslt6veiabs2"
+path="res://.godot/imported/worm-die.png-9958b05dd7a6b225c5608f3ad63f3a9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UpdatedAssets/Enemy/worm.png"
-dest_files=["res://.godot/imported/worm.png-d4c1820a3aad150784518982c96016c1.ctex"]
+source_file="res://src/entities/enemies/enemy_sau/sprites/worm-die.png"
+dest_files=["res://.godot/imported/worm-die.png-9958b05dd7a6b225c5608f3ad63f3a9f.ctex"]
 
 [params]
 

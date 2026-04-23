@@ -18,7 +18,7 @@ var can_attack: bool = true
 var flip_cooldown: float = 0.0
 
 func _setup_enemy():
-	health = 5
+	health = 3
 	attack_timer.wait_time = attack_cooldown
 	attack_timer.one_shot = true
 	if not attack_timer.timeout.is_connected(_on_attack_timer_timeout):

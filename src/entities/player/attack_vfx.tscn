@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dclhsr0g5y47"]
 
-[ext_resource type="Texture2D" uid="uid://wpp8pre1iqtf" path="res://src/entities/player/sprites/Attack VFX.png" id="1_vfx"]
+[ext_resource type="Texture2D" uid="uid://b6bwdl3h067ql" path="res://src/entities/player/sprites/Attack VFX.png" id="1_vfx"]
 [ext_resource type="Script" uid="uid://cx1on50nkfm5t" path="res://src/entities/player/attack_vfx.gd" id="2_script"]
 
 [sub_resource type="Animation" id="Animation_reset"]
@@ -43,9 +43,9 @@ _data = {
 
 [node name="AttackVFX" type="Sprite2D" unique_id=1762908903]
 position = Vector2(1, 1)
-scale = Vector2(0.26, 0.26)
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("1_vfx")
-hframes = 4
+hframes = 2
 script = ExtResource("2_script")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=464101893]
