@@ -1,16 +1,52 @@
-# Godot 4+ specific ignores
+# Godot 4+ generated files
 .godot/
-.nomedia
 
-# Godot-specific ignores
+# Godot 3.x / legacy imports
 .import/
+
+# Export configs and credentials
 export.cfg
 export_credentials.cfg
 
-# Imported translations (automatically generated from CSV files)
+# Exported builds
+*.apk
+*.aab
+*.ipa
+*.exe
+*.x86_64
+*.x86
+*.arm64
+*.universal
+*.pck
+*.zip
+
+# Imported translations (auto-generated from CSV)
 *.translation
 
-# Mono-specific ignores
+# Mono / C# specific
 .mono/
 data_*/
 mono_crash.*.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# Editor configs (optional — remove if you want to share these)
+.vscode/
+.idea/
+
+# Miscellaneous
+.nomedia
+*.tmp
+*.bak
