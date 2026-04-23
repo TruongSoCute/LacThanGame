@@ -6,11 +6,14 @@ const HEART_OFFSET = 16
 @onready var game_over_panel = $GameOver
 @onready var restart_btn = $GameOver/VBoxContainer/RestartBtn
 @onready var home_btn = $GameOver/VBoxContainer/HomeBtn
+@onready var message_panel = $Message
+@onready var message_label = $Message/NinePatchRect/Label
 
 var prev_health: float = 4.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("gui")
 	for i in Globals.health:
 		var new_heart = Sprite2D.new()
 		new_heart.texture = $heart.texture
@@ -104,3 +107,10 @@ func _on_home_pressed():
 	Globals.health = 4
 	Globals.soul = 0
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func show_message(text: String):
+	message_label.text = text
+	message_panel.visible = true
+	var tween = create_tween()
+	tween.tween_interval(2.0)
+	tween.tween_callback(func(): message_panel.visible = false)

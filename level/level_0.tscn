@@ -100,6 +100,7 @@ texture = ExtResource("3_kip3e")
 curve = SubResource("Curve2D_sau1")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Sau_Path1" unique_id=1045292968]
+rotates = false
 position = Vector2(-855, 363)
 script = ExtResource("10_pathfollow")
 
@@ -109,6 +110,7 @@ script = ExtResource("10_pathfollow")
 curve = SubResource("Curve2D_sau2")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Sau_Path2" unique_id=2037589712]
+rotates = false
 position = Vector2(2159, 479)
 script = ExtResource("10_pathfollow")
 
@@ -120,6 +122,7 @@ script = ExtResource("10_pathfollow")
 curve = SubResource("Curve2D_lv0_oc")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Oc Enemy/Path2D" unique_id=104019850]
+rotates = false
 position = Vector2(950, 4)
 rotation = 3.0944579
 script = ExtResource("10_pathfollow")

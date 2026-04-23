@@ -18,8 +18,8 @@ func _physics_process(delta):
 	rotation = direction.angle()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		Globals.health -= damage
+	if body.has_method("take_damage"):
+		body.take_damage(damage)
 		queue_free()
 	elif not body.is_in_group("Enemy"):
 		queue_free()

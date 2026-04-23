@@ -40,13 +40,15 @@ var dash_timer = Timer
 @export_category("Melee Variable")
 @export var is_attacking: bool = false
 
-##Health Variable
+@export_category("Health Variable")
 var hold_time = 1.0
 var hold_timer = 0.0
 var is_holding = false
 var health_at_heal_start: float = 0.0
 
 var is_dead = false
+var is_invincible = false
+var invincibility_duration = 1.0
 
 func _ready() -> void:
 	$sword/CollisionShape2D.disabled = true
@@ -80,7 +82,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("melee_attack") and not is_attacking and not is_holding:
+	if Input.is_action_just_pressed("melee_attack") and not is_attacking and not is_holding and not is_on_wall_only():
 		is_attacking = true
 		$anim.play("Attack")
 
@@ -213,21 +215,50 @@ func dead():
 	is_dead = true
 	Globals.player_died.emit()
 
+func take_damage(amount: float):
+	if is_invincible or is_dead:
+		return
+		
+	Globals.health -= amount
+	if Globals.health <= 0:
+		dead()
+	else:
+		start_invincibility()
+
+func start_invincibility():
+	is_invincible = true
+	# Flash effect
+	var tween = create_tween()
+	for i in range(5):
+		tween.tween_property($Sprite2D, "modulate:a", 0.3, 0.1)
+		tween.tween_property($Sprite2D, "modulate:a", 1.0, 0.1)
+	
+	await get_tree().create_timer(invincibility_duration).timeout
+	is_invincible = false
+	$Sprite2D.modulate.a = 1.0
+
 ##Ham chuc nang hoi phuc
 func healing(delta: float):
-	if Input.is_action_just_pressed("healing") and is_on_floor() and Globals.soul >= 0.5 and Globals.health < 4.0:
-		is_holding = true
-		hold_timer = 0.0
-		health_at_heal_start = Globals.health
-		$HealParticles.emitting = true
-		$HealSFX.play()
+	if Input.is_action_just_pressed("healing") and is_on_floor():
+		if Globals.soul < 0.5:
+			var gui = get_tree().get_first_node_in_group("gui")
+			if gui:
+				gui.show_message("Không đủ năng lượng!")
+			return
+			
+		if Globals.health < 4.0:
+			is_holding = true
+			hold_timer = 0.0
+			health_at_heal_start = Globals.health
+			$HealParticles.emitting = true
+			$HealSFX.play()
 	
 	if is_holding:
 		if not is_on_floor() or Globals.health < health_at_heal_start:
 			is_holding = false
 			hold_timer = 0.0
 			$HealParticles.emitting = false
-			$HealSFX.stop()
+			# Cho phép âm thanh chạy hết
 			return
 			
 		velocity.x = 0
@@ -241,12 +272,12 @@ func healing(delta: float):
 				is_holding = false
 				hold_timer = 0.0
 				$HealParticles.emitting = false
-				$HealSFX.stop()
+				# Cho phép âm thanh chạy hết
 		else:
 			is_holding = false
 			hold_timer = 0.0
 			$HealParticles.emitting = false
-			$HealSFX.stop()
+			# Cho phép âm thanh chạy hết
 
 func can_healing():
 	if Globals.soul >= 0.5:

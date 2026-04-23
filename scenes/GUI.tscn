@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://6cn4tr1nf1ot" path="res://assets(test)/UI/Sprites/HeartSpriteSheet.png" id="2_shsct"]
 [ext_resource type="Texture2D" uid="uid://iwkyij3et830" path="res://assets(test)/UI/soul_bar.png" id="3_tqy5q"]
 [ext_resource type="Texture2D" uid="uid://bk8nkb5tjw2t0" path="res://assets/ui/Lúa item buy 1.png" id="4_shsct"]
+[ext_resource type="Texture2D" uid="uid://bn75kt3uj0ckg" path="res://assets/ui/Dialog.png" id="5_dialog"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gameover"]
 bg_color = Color(0.8285606, 0.8136063, 0.9403969, 1)
@@ -34,6 +35,49 @@ offset_right = 166.26086
 offset_bottom = 106.0
 theme_override_font_sizes/font_size = 24
 text = "0"
+vertical_alignment = 1
+
+[node name="Message" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Message"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 100.0
+grow_horizontal = 0
+texture = ExtResource("5_dialog")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="Message/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+theme_override_font_sizes/font_size = 20
+text = "Không đủ năng lượng!"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOver" type="Control" parent="."]

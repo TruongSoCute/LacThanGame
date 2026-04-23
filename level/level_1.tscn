@@ -123,6 +123,7 @@ position = Vector2(-336, 848)
 curve = SubResource("Curve2D_6jaql")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Oc Enemy/Path2D"]
+rotates = false
 position = Vector2(-2880, 208)
 rotation = 3.1415927
 script = ExtResource("12_aive4")
@@ -134,6 +135,7 @@ rotation = 3.1415925
 curve = SubResource("Curve2D_aive4")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Oc Enemy/Path2D2"]
+rotates = false
 position = Vector2(-2240, -176)
 rotation = 3.1415927
 script = ExtResource("12_aive4")
@@ -145,6 +147,7 @@ position = Vector2(0, 6.993822e-07)
 curve = SubResource("Curve2D_bo1")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Bo_Path1"]
+rotates = false
 position = Vector2(-3600, 840)
 script = ExtResource("12_aive4")
 
@@ -154,6 +157,7 @@ script = ExtResource("12_aive4")
 curve = SubResource("Curve2D_bo2")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Bo_Path2"]
+rotates = false
 position = Vector2(-1200, 840)
 script = ExtResource("12_aive4")
 
