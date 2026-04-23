@@ -1,6 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://xyp1lro7v2mb"]
 
 [ext_resource type="Script" uid="uid://dg2th1mcwpnva" path="res://enemy/enemy_oc.gd" id="1_3n76x"]
+[ext_resource type="PackedScene" uid="uid://c8n4y8n4y8n4y" path="res://scenes/health_bar.tscn" id="2_health"]
 [ext_resource type="Texture2D" uid="uid://cxxnydngyqo6p" path="res://assets/enemy/image 1.png" id="1_jly8t"]
 
 [sub_resource type="Animation" id="Animation_wh6xi"]
@@ -72,7 +73,7 @@ height = 96.0
 radius = 40.0
 height = 128.0
 
-[node name="Enemy_Oc" type="CharacterBody2D"]
+[node name="Enemy_Oc" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_3n76x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -88,13 +89,28 @@ position = Vector2(8, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_u6cjc")
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(8, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_eik5o")
 debug_color = Color(0.055199787, 0.612107, 0.6160031, 0.41960785)
 
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(8, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_eik5o")
+debug_color = Color(0.8, 0.2, 0.2, 0.42)
+
+[node name="HealthBar" parent="." instance=ExtResource("2_health")]
+position = Vector2(8, 0)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

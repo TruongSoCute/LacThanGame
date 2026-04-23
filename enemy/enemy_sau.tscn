@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cojcbn8mhvvyt" path="res://assets/enemy/Frame 1.png" id="1_3uef1"]
 [ext_resource type="Script" uid="uid://8l63co6c2owg" path="res://enemy/enemy_sau.gd" id="1_uyru7"]
+[ext_resource type="PackedScene" uid="uid://c8n4y8n4y8n4y" path="res://scenes/health_bar.tscn" id="2_health"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uyru7"]
 radius = 32.0
@@ -23,17 +24,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_1dota"]
@@ -61,7 +51,7 @@ _data = {
 radius = 32.0
 height = 128.0
 
-[node name="Enemy_Sau" type="CharacterBody2D"]
+[node name="Enemy_Sau" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 3
 script = ExtResource("1_uyru7")
 
@@ -81,17 +71,45 @@ libraries = {
 }
 
 [node name="left_raycast" type="RayCast2D" parent="."]
-target_position = Vector2(-256, 0)
-collision_mask = 3
+target_position = Vector2(-64, 0)
+collision_mask = 1
 
 [node name="right_raycast" type="RayCast2D" parent="."]
-target_position = Vector2(256, 0)
-collision_mask = 3
+target_position = Vector2(64, 0)
+collision_mask = 1
+
+[node name="floor_ray_left" type="RayCast2D" parent="."]
+position = Vector2(-48, 0)
+target_position = Vector2(0, 48)
+collision_mask = 1
+
+[node name="floor_ray_right" type="RayCast2D" parent="."]
+position = Vector2(48, 0)
+target_position = Vector2(0, 48)
+collision_mask = 1
 
 [node name="hurt_box" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
 position = Vector2(8, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1dota")
 debug_color = Color(0.45014465, 0.5685448, 0.508063, 0.41960785)
+
+[node name="hit_box" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_box"]
+position = Vector2(8, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_1dota")
+debug_color = Color(0.8, 0.2, 0.2, 0.42)
+
+[node name="HealthBar" parent="." instance=ExtResource("2_health")]
+position = Vector2(8, 0)
+
+[connection signal="area_entered" from="hurt_box" to="." method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="hit_box" to="." method="_on_hit_box_body_entered"]

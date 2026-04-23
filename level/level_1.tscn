@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bw8v6eu88peai"]
+[gd_scene load_steps=16 format=4 uid="uid://bw8v6eu88peai"]
 
 [ext_resource type="PackedScene" uid="uid://defrmyckc6ry2" path="res://player/player.tscn" id="1_vndax"]
 [ext_resource type="PackedScene" uid="uid://ceawyxb6yanfc" path="res://scenes/GUI.tscn" id="2_k4ctk"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://xyp1lro7v2mb" path="res://enemy/enemy_oc.tscn" id="11_hdc4k"]
 [ext_resource type="Script" uid="uid://dgoyqb81sc227" path="res://scripts/path_follow.gd" id="12_aive4"]
 [ext_resource type="Script" uid="uid://parallax_script_id" path="res://scripts/parallax_bg.gd" id="13_parallax"]
+[ext_resource type="PackedScene" uid="uid://dglhsr0g5y47" path="res://enemy/enemy_bo.tscn" id="14_bo"]
 
 [sub_resource type="Curve2D" id="Curve2D_6jaql"]
 _data = {
@@ -25,6 +26,18 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2240, -176, 0, 0, 0, 0, -2432, -176, 0, 0, 0, 0, -2464, -128, 0, 0, 0, 0, -2464, 104, 0, 0, 0, 0, -2424, 144, 0, 0, 0, 0, -2072, 144, 0, 0, 0, 0, -2048, 144, 0, 0, 0, 0, -2016, 112, 0, 0, 0, 0, -2016, -144, 0, 0, 0, 0, -2056, -176, 0, 0, 0, 0, -2240, -176)
 }
 point_count = 11
+
+[sub_resource type="Curve2D" id="Curve2D_bo1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3600, 840, 0, 0, 0, 0, -3400, 840, 0, 0, 0, 0, -3400, 740, 0, 0, 0, 0, -3600, 740, 0, 0, 0, 0, -3600, 840)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_bo2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1200, 840, 0, 0, 0, 0, -1000, 840, 0, 0, 0, 0, -1000, 740, 0, 0, 0, 0, -1200, 740, 0, 0, 0, 0, -1200, 840)
+}
+point_count = 5
 
 [node name="Level 1" type="Node2D"]
 
@@ -127,3 +140,26 @@ script = ExtResource("12_aive4")
 
 [node name="Enemy_Oc2" parent="Enemy/Oc Enemy/Path2D2/PathFollow2D" instance=ExtResource("11_hdc4k")]
 position = Vector2(0, 6.993822e-07)
+
+[node name="Bo_Path1" type="Path2D" parent="Enemy"]
+curve = SubResource("Curve2D_bo1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Bo_Path1"]
+position = Vector2(-3600, 840)
+script = ExtResource("12_aive4")
+
+[node name="Enemy_Bo1" parent="Enemy/Bo_Path1/PathFollow2D" instance=ExtResource("14_bo")]
+
+[node name="Bo_Path2" type="Path2D" parent="Enemy"]
+curve = SubResource("Curve2D_bo2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Bo_Path2"]
+position = Vector2(-1200, 840)
+script = ExtResource("12_aive4")
+
+[node name="Enemy_Bo2" parent="Enemy/Bo_Path2/PathFollow2D" instance=ExtResource("14_bo")]
+
+[node name="Enemy_Sau3" parent="Enemy" instance=ExtResource("10_skxlf")]
+position = Vector2(600, 848)
+
+[node name="GUI" parent="." instance=ExtResource("2_k4ctk")]

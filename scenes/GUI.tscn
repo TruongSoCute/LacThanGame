@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://iwkyij3et830" path="res://assets(test)/UI/soul_bar.png" id="3_tqy5q"]
 [ext_resource type="Texture2D" uid="uid://bk8nkb5tjw2t0" path="res://assets/ui/Lúa item buy 1.png" id="4_shsct"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gameover"]
+bg_color = Color(0.8285606, 0.8136063, 0.9403969, 1)
+
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_womn8")
 
@@ -32,3 +35,57 @@ offset_bottom = 106.0
 theme_override_font_sizes/font_size = 24
 text = "0"
 vertical_alignment = 1
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.705882)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -61.0
+offset_right = 160.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.14, 0.14, 1)
+theme_override_font_sizes/font_size = 48
+text = "BẠN ĐÃ TỬ TRẬN"
+horizontal_alignment = 1
+
+[node name="RestartBtn" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_gameover")
+text = "Chơi Lại"
+
+[node name="HomeBtn" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_gameover")
+text = "Trang Chủ"

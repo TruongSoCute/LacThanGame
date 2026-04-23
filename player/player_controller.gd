@@ -41,10 +41,12 @@ var dash_timer = Timer
 @export var is_attacking: bool = false
 
 ##Health Variable
-var hold_time = 1.5
+var hold_time = 1.0
 var hold_timer = 0.0
 var is_holding = false
+var health_at_heal_start: float = 0.0
 
+var is_dead = false
 
 func _ready() -> void:
 	$sword/CollisionShape2D.disabled = true
@@ -52,19 +54,21 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	#Add Gravity
 	# Gravity logic
-	if Globals.health <= 0:
-		dead()
+	if Globals.health <= 0 or is_dead:
+		if not is_dead:
+			dead()
+		return
+	
+	if not is_dasing:
+		var current_gravity = gravity
+		if velocity.y > 0: # Falling
+			current_gravity *= fall_gravity_multiplier
+		elif velocity.y < 0 and not Input.is_action_pressed("jump"): # Short jump
+			current_gravity *= jump_cut_multiplier
+		
+		velocity.y += current_gravity * delta
 	else:
-		if not is_dasing:
-			var current_gravity = gravity
-			if velocity.y > 0: # Falling
-				current_gravity *= fall_gravity_multiplier
-			elif velocity.y < 0 and not Input.is_action_pressed("jump"): # Short jump
-				current_gravity *= jump_cut_multiplier
-			
-			velocity.y += current_gravity * delta
-		else:
-			velocity.y = dash_gravity
+		velocity.y = dash_gravity
 	
 	horizontal_movement()
 	jump_logic()
@@ -76,8 +80,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("melee_attack"):
+	if Input.is_action_just_pressed("melee_attack") and not is_attacking and not is_holding:
 		is_attacking = true
+		$anim.play("Attack")
 
 func horizontal_movement():
 	if is_wall_jumping == false and is_dasing == false and is_holding == false: 
@@ -94,20 +99,26 @@ func horizontal_movement():
 
 # Chạy với Animation cũ
 func set_animation():
-	var anima: AnimatedSprite2D = $AnimatedSprite2D
-	if not is_attacking:
-		if velocity.x != 0: 
-			anima.play("run")
-		if velocity.x == 0:
-			anima.play("idle")
+	if is_attacking: 
+		return # Để AnimationPlayer tự chạy hết đòn đánh
+	
+	if is_on_floor():
+		if velocity.x != 0:
+			$anim.play("Move")
+		else:
+			$anim.play("Idle")
+	else:
 		if velocity.y < 0:
-			anima.play("jump")
-		if velocity.y > 10:
-			anima.play("fall")
-		if is_on_wall_only():
-			anima.play("wall")
-	if is_attacking:
-		anima.play("attack")
+			$anim.play("Jump")
+		else:
+			$anim.play("Fall")
+			
+	if is_on_wall_only():
+		$anim.play("Wall")
+
+	# Đảm bảo dùng Sprite2D (của AnimationPlayer)
+	$Sprite2D.visible = true
+	$AnimatedSprite2D.visible = false
 		
 
 #Filp Srpite base on transform scale 
@@ -199,32 +210,45 @@ func reset_states():
 	is_attacking = false
 	
 func dead():
-	get_tree().reload_current_scene()
-	Globals.health = 4
+	is_dead = true
+	Globals.player_died.emit()
 
 ##Ham chuc nang hoi phuc
 func healing(delta: float):
-	if Input.is_action_just_pressed("healing") and is_on_floor():
+	if Input.is_action_just_pressed("healing") and is_on_floor() and Globals.soul >= 0.5 and Globals.health < 4.0:
 		is_holding = true
 		hold_timer = 0.0
+		health_at_heal_start = Globals.health
+		$HealParticles.emitting = true
+		$HealSFX.play()
 	
 	if is_holding:
-		if not is_on_floor():
+		if not is_on_floor() or Globals.health < health_at_heal_start:
 			is_holding = false
 			hold_timer = 0.0
+			$HealParticles.emitting = false
+			$HealSFX.stop()
 			return
 			
 		velocity.x = 0
-		$AnimatedSprite2D.play("idle")
-		if Input.is_action_pressed("healing") and hold_timer <= hold_time:
+		if not is_attacking:
+			$anim.play("Idle")
+			
+		if Input.is_action_pressed("healing"):
 			hold_timer += delta		
-		else:
 			if hold_timer >= hold_time:
 				can_healing()
+				is_holding = false
+				hold_timer = 0.0
+				$HealParticles.emitting = false
+				$HealSFX.stop()
+		else:
 			is_holding = false
 			hold_timer = 0.0
+			$HealParticles.emitting = false
+			$HealSFX.stop()
 
 func can_healing():
-	if Globals.soul >= 0.25:
+	if Globals.soul >= 0.5:
 		Globals.health += 1
-		Globals.soul -= 0.25
+		Globals.soul -= 0.5
