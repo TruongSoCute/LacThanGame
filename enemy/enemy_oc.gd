@@ -18,6 +18,10 @@ func _ready():
 	if health_bar:
 		health_bar.max_value = health
 		health_bar.value = health
+		# Force position and size for clarity
+		health_bar.position = Vector2(0, -95)
+		health_bar.custom_minimum_size = Vector2(60, 3)
+		health_bar.z_index = 100
 
 func _physics_process(_delta: float) -> void:
 	if health <= 0:

@@ -1,73 +1,61 @@
-#@tool
 class_name LevelTransition extends Node2D
-#
-#enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
-#@export_range(2, 12, 1, "or_greater") var size: int = 2 :
-	#set( value ):
-		#size = value
-		#apply_area_setting()
-#
-#@export var location : SIDE = SIDE.LEFT
-#
-#@export_file("*.tscn") var target_level : String = ""
-#@export var target_area_name : String = "LevelTransition"
-#
-#@onready var area_2d: Area2D = $Area2D
-#
-#func _ready() -> void:
-	#if Engine.is_editor_hint():
-		#return
-	#SceneManager.new_scene_ready.connect( _on_new_scene_ready )
-	#SceneManager.load_scene_finished.connect( _on_load_scene_finished )
-	#area_2d.body_entered.connect( _on_player_entered )
-	#
-#
-#func _on_player_entered( _node :Node2D) -> void:
-	#SceneManager.transition_scene(target_level, target_area_name, get_offset(_node), "left")
-#
-#
-#func _on_new_scene_ready( target_name : String, offset : Vector2 ) -> void:
-	#if target_name == name:
-		#var player : Node = get_tree().get_first_node_in_group("Player")
-		#player.global_position = global_position + offset
-	#pass
-#
-#func _on_load_scene_finished() -> void:
-	#area_2d.body_entered.connect( _on_player_entered )
-	#pass
-#
-#
-#func apply_area_setting():
-	#area_2d = get_node_or_null("Area2D")
-	#if not area_2d:
-		#return
-	#if location == SIDE.LEFT or location == SIDE.RIGHT:
-		#area_2d.scale.y  = size
-		#if location == SIDE.LEFT:
-			#area_2d.scale.x = -1
-		#else:
-			#area_2d.scale.x = 1
-	#else:
-		#area_2d.scale.x = size
-		#if location == SIDE.TOP:
-			#area_2d.scale.y = 1
-		#else:
-			#area_2d.scale.y = -1
-#
-#func get_offset(player : Node2D) -> Vector2:
-	#var offset : Vector2 = Vector2.ZERO
-	#var player_pos : Vector2 = player.global_position
-	#
-	#if location == SIDE.LEFT or location == SIDE.RIGHT:
-		#offset.y = player_pos.y - self.global_position.y
-		#if location == SIDE.LEFT:
-			#offset.x = -400
-		#else:
-			#offset.x = 400
-	#else:
-		#offset.x = player_pos.x - self.global_position.x
-		#if location == SIDE.TOP:
-			#offset.y = -400
-		#else:
-			#offset.y = 400
-	#return Vector2.ZERO
+
+@export_file("*.tscn") var target_level : String = ""
+@export var wait_time : float = 2.0
+
+@onready var area_2d: Area2D = $Area2D
+
+var player_inside := false
+var timer := 0.0
+var all_enemies_dead := false
+var transition_started := false
+
+func _ready() -> void:
+	area_2d.body_entered.connect(_on_body_entered)
+	area_2d.body_exited.connect(_on_body_exited)
+
+func _process(delta: float) -> void:
+	if transition_started:
+		return
+	
+	# Kiểm tra xem tất cả quái đã chết chưa
+	if not all_enemies_dead:
+		var enemies = get_tree().get_nodes_in_group("Enemy")
+		if enemies.size() == 0:
+			all_enemies_dead = true
+			# Hiện thông báo cho player biết có thể qua màn
+			var gui_nodes = get_tree().get_nodes_in_group("gui")
+			if gui_nodes.size() > 0:
+				gui_nodes[0].show_message("Đã tiêu diệt hết quái! Hãy đến cổng chuyển màn!")
+		return
+	
+	# Nếu quái đã chết hết và player đang đứng trong vùng transition
+	if player_inside:
+		timer += delta
+		if timer >= wait_time:
+			transition_started = true
+			_change_level()
+	else:
+		timer = 0.0
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player") or body.is_in_group("Player"):
+		player_inside = true
+		timer = 0.0
+		if all_enemies_dead:
+			var gui_nodes = get_tree().get_nodes_in_group("gui")
+			if gui_nodes.size() > 0:
+				gui_nodes[0].show_message("Đang chuyển màn...")
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player") or body.is_in_group("Player"):
+		player_inside = false
+		timer = 0.0
+
+func _change_level() -> void:
+	if target_level == "":
+		print("LevelTransition: target_level chưa được thiết lập!")
+		return
+	Globals.health = Globals.max_health
+	Globals.soul = 0.0
+	get_tree().change_scene_to_file(target_level)

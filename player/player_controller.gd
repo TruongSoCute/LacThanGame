@@ -62,7 +62,7 @@ func _ready() -> void:
 		"dash": "res://assets/sfx/Coi/coi_dash_1.wav",
 		"death": "res://assets/sfx/Coi/coi_death.wav",
 		"damage": "res://assets/sfx/Coi/coi_take_damage.wav",
-		"attack_miss": "res://assets/sfx/Coi/sword_4.wav",
+		"attack_miss": "res://assets/sfx/Coi/sword_4.mp3",
 		"attack_hit_1": "res://assets/sfx/Coi/sword_1.wav",
 		"attack_hit_2": "res://assets/sfx/Coi/sword_2.wav",
 		"attack_hit_3": "res://assets/sfx/Coi/sword_3.wav",

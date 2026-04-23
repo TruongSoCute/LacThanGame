@@ -136,7 +136,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HealthBar" parent="." instance=ExtResource("3_health")]
-position = Vector2(0, 0)
+position = Vector2(0, -100)
 
 [connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
 [connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]

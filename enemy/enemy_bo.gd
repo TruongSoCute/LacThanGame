@@ -37,6 +37,10 @@ func _ready():
 	if health_bar:
 		health_bar.max_value = health
 		health_bar.value = health
+		# Force position and size for clarity
+		health_bar.position = Vector2(0, -100)
+		health_bar.custom_minimum_size = Vector2(60, 3)
+		health_bar.z_index = 100
 	attack_timer.wait_time = attack_cooldown
 	attack_timer.one_shot = true
 
@@ -48,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_path:
 		var pf = get_parent()
 		if pf is PathFollow2D and "is_waiting" in pf and pf.is_waiting:
-			anim.play("Idle")
+			anim.play("RESET")
 		else:
 			anim.play("move")
 		# Tự động quay mặt theo hướng di chuyển trên Path
