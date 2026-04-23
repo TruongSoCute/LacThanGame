@@ -50,8 +50,29 @@ var is_dead = false
 var is_invincible = false
 var invincibility_duration = 1.0
 
+var sfx_players = {}
+var was_on_floor = true
+var footstep_timer = 0.0
+
 func _ready() -> void:
 	$sword/CollisionShape2D.disabled = true
+	
+	var sounds = {
+		"jump": "res://assets/sfx/Coi/coi_jump.wav",
+		"dash": "res://assets/sfx/Coi/coi_dash_1.wav",
+		"death": "res://assets/sfx/Coi/coi_death.wav",
+		"damage": "res://assets/sfx/Coi/coi_take_damage.wav",
+		"attack": "res://assets/sfx/Coi/sword_1.wav",
+		"landing": "res://assets/sfx/Coi/coi_landing.wav",
+		"wall_slide": "res://assets/sfx/Coi/coi_wall_slide.mp3",
+		"footstep": "res://assets/sfx/Coi/coi_footstep_grass.wav"
+	}
+	
+	for key in sounds:
+		var player = AudioStreamPlayer2D.new()
+		player.stream = load(sounds[key])
+		add_child(player)
+		sfx_players[key] = player
 
 func _physics_process(delta: float) -> void:
 	#Add Gravity
@@ -80,10 +101,32 @@ func _physics_process(delta: float) -> void:
 	flip()
 	healing(delta)
 	move_and_slide()
+	
+	var currently_on_floor = is_on_floor()
+	if currently_on_floor and not was_on_floor:
+		sfx_players["landing"].play()
+	was_on_floor = currently_on_floor
+	
+	if currently_on_floor and velocity.x != 0 and not is_attacking and not is_holding:
+		footstep_timer -= delta
+		if footstep_timer <= 0:
+			sfx_players["footstep"].play()
+			footstep_timer = 0.35
+	else:
+		footstep_timer = 0.0
+		if sfx_players["footstep"].playing:
+			sfx_players["footstep"].stop()
+		
+	if is_on_wall_only() and velocity.y > 0:
+		if not sfx_players["wall_slide"].playing:
+			sfx_players["wall_slide"].play()
+	else:
+		sfx_players["wall_slide"].stop()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("melee_attack") and not is_attacking and not is_holding and not is_on_wall_only():
 		is_attacking = true
+		sfx_players["attack"].play()
 		$anim.play("Attack")
 
 func horizontal_movement():
@@ -165,6 +208,7 @@ func jump_logic():
 
 func perform_jump(force: float):
 	velocity.y = -force
+	sfx_players["jump"].play()
 	jump_amount -= 1
 	jump_buffer_timer = 0 # Consume buffer
 		
@@ -201,6 +245,7 @@ func dash():
 	
 func dash_started():
 	if is_dasing == true:
+		sfx_players["dash"].play()
 		dash_key_pressed = 1
 		await get_tree().create_timer(0.16).timeout
 		is_dasing = false
@@ -213,6 +258,7 @@ func reset_states():
 	
 func dead():
 	is_dead = true
+	sfx_players["death"].play()
 	Globals.player_died.emit()
 
 func take_damage(amount: float):
@@ -220,6 +266,7 @@ func take_damage(amount: float):
 		return
 		
 	Globals.health -= amount
+	sfx_players["damage"].play()
 	if Globals.health <= 0:
 		dead()
 	else:
