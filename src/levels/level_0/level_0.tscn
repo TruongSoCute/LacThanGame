@@ -63,7 +63,7 @@ limit_left = -2500
 limit_top = -1000
 limit_right = 7000
 limit_bottom = 1000
-position_smoothing_enabled = true
+position_smoothing_enabled = false
 
 [node name="GUI" parent="." unique_id=652535963 instance=ExtResource("11_gui")]
 
