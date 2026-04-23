@@ -132,7 +132,8 @@ func _physics_process(delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("melee_attack") and not is_attacking and not is_holding and not is_on_wall_only():
 		is_attacking = true
-		sfx_players["attack_miss"].play()
+		var sound = sfx_players["attack_miss"]
+		sound.play(sound.stream.get_length() * 0.5)
 		$anim.play("Attack")
 		spawn_attack_vfx()
 

@@ -4,15 +4,21 @@ class_name LevelTransition extends Node2D
 @export var wait_time : float = 2.0
 
 @onready var area_2d: Area2D = $Area2D
+@onready var portal_particles: CPUParticles2D = $PortalParticles
 
 var player_inside := false
 var timer := 0.0
-var all_enemies_dead := false
+var all_enemies_dead := false:
+	set(value):
+		all_enemies_dead = value
+		if all_enemies_dead and portal_particles:
+			portal_particles.emitting = true
 var transition_started := false
 
 func _ready() -> void:
 	area_2d.body_entered.connect(_on_body_entered)
 	area_2d.body_exited.connect(_on_body_exited)
+	portal_particles.emitting = all_enemies_dead
 
 func _process(delta: float) -> void:
 	if transition_started:
