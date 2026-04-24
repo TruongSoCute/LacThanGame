@@ -16,7 +16,7 @@ func _setup_enemy():
 
 func _state_logic(delta: float):
 	velocity.x = direction * speed
-	if anim: anim.play("move")
+	sprite.play("running")
 
 	if flip_cooldown > 0:
 		flip_cooldown -= delta
@@ -25,6 +25,7 @@ func _state_logic(delta: float):
 		if direction == 1 and ray_right.is_colliding():
 			var collider = ray_right.get_collider()
 			if not (collider is CharacterBody2D and collider.is_in_group("player")):
+				print("Colider Right")
 				wall_detected = true
 		elif direction == -1 and ray_left.is_colliding():
 			var collider = ray_left.get_collider()
@@ -39,5 +40,5 @@ func _state_logic(delta: float):
 
 		if wall_detected or edge_detected:
 			direction *= -1
-			sprite.flip_h = direction < 0
+			sprite.flip_h = direction > 0
 			flip_cooldown = 0.3

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ceawyxb6yanfc"]
 
 [ext_resource type="Script" uid="uid://d2pnd5f7otcif" path="res://src/ui/hud/gui.gd" id="1_womn8"]
-[ext_resource type="Texture2D" uid="uid://6cn4tr1nf1ot" path="res://assets(test)/UI/Sprites/HeartSpriteSheet.png" id="2_shsct"]
-[ext_resource type="Texture2D" uid="uid://iwkyij3et830" path="res://assets(test)/UI/soul_bar.png" id="3_tqy5q"]
+[ext_resource type="Texture2D" uid="uid://brxgsgrku5qcp" path="res://assets/ui/nut mau.png" id="2_shsct"]
+[ext_resource type="Texture2D" uid="uid://dl2bjvkr8ovn0" path="res://assets/ui/soul_bar.png" id="3_tqy5q"]
 [ext_resource type="Texture2D" uid="uid://bk8nkb5tjw2t0" path="res://assets/ui/Lúa item buy 1.png" id="4_shsct"]
 [ext_resource type="Texture2D" uid="uid://bn75kt3uj0ckg" path="res://assets/ui/Dialog.png" id="5_dialog"]
 
@@ -14,9 +14,9 @@ script = ExtResource("1_womn8")
 
 [node name="heart" type="Sprite2D" parent="."]
 position = Vector2(88, 32)
-scale = Vector2(2, 2)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_shsct")
-hframes = 5
+hframes = 1
 
 [node name="soul_bar" type="Sprite2D" parent="."]
 position = Vector2(40, 32)

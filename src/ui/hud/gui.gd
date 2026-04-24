@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 const HEART_ROW_SIZE = 8
-const HEART_OFFSET = 16
+const HEART_OFFSET = 110
 @onready var coin_label = $coin_value
 @onready var game_over_panel = $GameOver
 @onready var restart_btn = $GameOver/VBoxContainer/RestartBtn
@@ -37,15 +37,11 @@ func _process(_delta: float) -> void:
 		var index = heart.get_index()
 		var x = (index % HEART_ROW_SIZE) * HEART_OFFSET
 		var y = int(index / float(HEART_ROW_SIZE)) * HEART_OFFSET
-		heart.position = Vector2(x,y)
-		
-		var last_heart = floor(Globals.health)
-		if index > last_heart:
-			heart.frame = 0
-		if index == last_heart:
-			heart.frame = (Globals.health - last_heart) * 4
-		if index < last_heart:
-			heart.frame = 4
+		heart.position = Vector2(x, y)
+		if float(index) < Globals.health:
+			heart.modulate = Color(1, 1, 1, 1)
+		else:
+			heart.modulate = Color(1, 1, 1, 0.2)
 
 func _on_health_changed(new_health: float):
 	var damage = prev_health - new_health
@@ -80,16 +76,7 @@ func _spawn_damage_text(player: Node2D, damage: float):
 	tween.chain().tween_callback(label.queue_free)
 
 func soul_regeneration():
-	if Globals.soul == 1.0:
-		$soul_bar.frame = 0
-	if Globals.soul == 0.75:
-		$soul_bar.frame = 1
-	if Globals.soul == 0.5:
-		$soul_bar.frame = 2
-	if Globals.soul == 0.25:
-		$soul_bar.frame = 3
-	if Globals.soul == 0.0:
-		$soul_bar.frame = 4
+	$soul_bar.frame = 4 - int(round(Globals.soul * 4))
 
 func _on_player_died():
 	game_over_panel.visible = true

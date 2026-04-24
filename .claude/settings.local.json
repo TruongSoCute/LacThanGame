@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat /d/Projects/LacThanGame/src/levels/level_1/level_1.tscn)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

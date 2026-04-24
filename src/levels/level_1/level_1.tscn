@@ -11,87 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dmhkc71f2lm0c" path="res://src/ui/gameplay/coin/coin.tscn" id="9_k4ctk"]
 [ext_resource type="PackedScene" uid="uid://cal4ab2hb2fo4" path="res://src/entities/enemies/enemy_sau/enemy_sau.tscn" id="10_skxlf"]
 [ext_resource type="PackedScene" uid="uid://xyp1lro7v2mb" path="res://src/entities/enemies/enemy_oc/enemy_oc.tscn" id="11_hdc4k"]
-[ext_resource type="Script" uid="uid://dgoyqb81sc227" path="res://src/utilities/path_follow.gd" id="12_aive4"]
 [ext_resource type="Script" uid="uid://bkpg0p1tb7tkw" path="res://src/utilities/parallax_bg.gd" id="13_parallax"]
 [ext_resource type="PackedScene" uid="uid://dglhsr0g5y47" path="res://src/entities/enemies/enemy_bo/enemy_bo.tscn" id="14_bo"]
-
-[sub_resource type="Curve2D" id="Curve2D_sau_lv1_1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2200, 848, 0, 0, 0, 0, -2000, 848)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_sau_lv1_2"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -336, 848, 0, 0, 0, 0, -245, 849, 0, 0, 0, 0, -224, 848)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_6jaql"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2880, 208, 0, 0, 0, 0, -3040, 208, 0, 0, 0, 0, -3096, 240, 0, 0, 0, 0, -3096, 488, 0, 0, 0, 0, -3056, 536, 0, 0, 0, 0, -2712, 536, 0, 0, 0, 0, -2664, 496, 0, 0, 0, 0, -2664, 232, 0, 0, 0, 0, -2720, 208, 0, 0, 0, 0, -2880, 208)
-}
-point_count = 10
-
-[sub_resource type="Curve2D" id="Curve2D_aive4"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2240, -176, 0, 0, 0, 0, -2432, -176, 0, 0, 0, 0, -2464, -128, 0, 0, 0, 0, -2464, 104, 0, 0, 0, 0, -2424, 144, 0, 0, 0, 0, -2072, 144, 0, 0, 0, 0, -2048, 144, 0, 0, 0, 0, -2016, 112, 0, 0, 0, 0, -2016, -144, 0, 0, 0, 0, -2056, -176, 0, 0, 0, 0, -2240, -176)
-}
-point_count = 11
-
-[sub_resource type="Curve2D" id="Curve2D_bo1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3600, 840, 0, 0, 0, 0, -3400, 840, 0, 0, 0, 0, -3400, 740, 0, 0, 0, 0, -3600, 740, 0, 0, 0, 0, -3600, 840)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_bo2"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1200, 840, 0, 0, 0, 0, -1000, 840, 0, 0, 0, 0, -1000, 740, 0, 0, 0, 0, -1200, 740, 0, 0, 0, 0, -1200, 840)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_sau_lv1_3"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 600, 848, 0, 0, 0, 0, 800, 848)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_bo_new1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4400, 800, 0, 0, 0, 0, -4200, 800)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_bo_new2"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4200, 800, 0, 0, 0, 0, -4000, 800)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_oc_new1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4000, 800, 0, 0, 0, 0, -3800, 800)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_oc_new2"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3800, 800, 0, 0, 0, 0, -3600, 800)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_sau_new1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3600, 800, 0, 0, 0, 0, -3400, 800)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_sau_new2"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3400, 800, 0, 0, 0, 0, -3200, 800)
-}
-point_count = 2
 
 [node name="Level 1" type="Node2D" unique_id=1620150040]
 
@@ -163,153 +84,44 @@ position = Vector2(-4216, 552)
 
 [node name="Enemy" type="Node2D" parent="." unique_id=1595482798]
 
-[node name="Sau_Path1" type="Path2D" parent="Enemy" unique_id=196794719]
-curve = SubResource("Curve2D_sau_lv1_1")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Sau_Path1" unique_id=1556219932]
+[node name="Enemy_Sau" parent="Enemy" unique_id=58383904 instance=ExtResource("10_skxlf")]
 position = Vector2(-2200, 848)
-rotates = false
-script = ExtResource("12_aive4")
 
-[node name="Enemy_Sau" parent="Enemy/Sau_Path1/PathFollow2D" unique_id=58383904 instance=ExtResource("10_skxlf")]
+[node name="Enemy_Sau2" parent="Enemy" unique_id=2081084811 instance=ExtResource("10_skxlf")]
+position = Vector2(-703, 217)
 
-[node name="Sau_Path2" type="Path2D" parent="Enemy" unique_id=521555561]
-position = Vector2(-367, -631)
-curve = SubResource("Curve2D_sau_lv1_2")
+[node name="Enemy_Sau3" parent="Enemy" unique_id=1916536416 instance=ExtResource("10_skxlf")]
+position = Vector2(2009, 1238)
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Sau_Path2" unique_id=1551474699]
-position = Vector2(-336, 848)
-rotates = false
-script = ExtResource("12_aive4")
+[node name="Enemy_Sau_New1" parent="Enemy" unique_id=2100000005 instance=ExtResource("10_skxlf")]
+position = Vector2(5354, 617)
 
-[node name="Enemy_Sau2" parent="Enemy/Sau_Path2/PathFollow2D" unique_id=2081084811 instance=ExtResource("10_skxlf")]
+[node name="Enemy_Sau_New2" parent="Enemy" unique_id=2100000006 instance=ExtResource("10_skxlf")]
+position = Vector2(3391, 599)
 
-[node name="Oc Enemy" type="Node2D" parent="Enemy" unique_id=2051984825]
-
-[node name="Path2D" type="Path2D" parent="Enemy/Oc Enemy" unique_id=1684403560]
-curve = SubResource("Curve2D_6jaql")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Oc Enemy/Path2D" unique_id=1470380502]
+[node name="Enemy_Oc" parent="Enemy" unique_id=7141446 instance=ExtResource("11_hdc4k")]
 position = Vector2(-2880, 208)
-rotates = false
-script = ExtResource("12_aive4")
 
-[node name="Enemy_Oc" parent="Enemy/Oc Enemy/Path2D/PathFollow2D" unique_id=7141446 instance=ExtResource("11_hdc4k")]
-
-[node name="Path2D2" type="Path2D" parent="Enemy/Oc Enemy" unique_id=1563292121]
-curve = SubResource("Curve2D_aive4")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Oc Enemy/Path2D2" unique_id=1430310520]
+[node name="Enemy_Oc2" parent="Enemy" unique_id=593443511 instance=ExtResource("11_hdc4k")]
 position = Vector2(-2240, -176)
-rotates = false
-script = ExtResource("12_aive4")
 
-[node name="Enemy_Oc2" parent="Enemy/Oc Enemy/Path2D2/PathFollow2D" unique_id=593443511 instance=ExtResource("11_hdc4k")]
-position = Vector2(0, 6.993822e-07)
+[node name="Enemy_Oc_New1" parent="Enemy" unique_id=2100000003 instance=ExtResource("11_hdc4k")]
+position = Vector2(2658, 1239)
 
-[node name="Bo_Path1" type="Path2D" parent="Enemy" unique_id=412665915]
-position = Vector2(4538, -812)
-curve = SubResource("Curve2D_bo1")
+[node name="Enemy_Oc_New2" parent="Enemy" unique_id=2100000004 instance=ExtResource("11_hdc4k")]
+position = Vector2(-3415, 856)
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Bo_Path1" unique_id=1481033284]
-position = Vector2(-3600, 840)
-rotates = false
-script = ExtResource("12_aive4")
+[node name="Enemy_Bo1" parent="Enemy" unique_id=1270317796 instance=ExtResource("14_bo")]
+position = Vector2(947, 29)
 
-[node name="Enemy_Bo1" parent="Enemy/Bo_Path1/PathFollow2D" unique_id=1270317796 instance=ExtResource("14_bo")]
-position = Vector2(9, 1)
+[node name="Enemy_Bo2" parent="Enemy" unique_id=117238310 instance=ExtResource("14_bo")]
+position = Vector2(-1244, -337)
 
-[node name="Bo_Path2" type="Path2D" parent="Enemy" unique_id=989685098]
-position = Vector2(-45, -1182)
-curve = SubResource("Curve2D_bo2")
+[node name="Enemy_Bo_New1" parent="Enemy" unique_id=2100000001 instance=ExtResource("14_bo")]
+position = Vector2(-299, 785)
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Bo_Path2" unique_id=1609575907]
-position = Vector2(-1200, 840)
-rotates = false
-script = ExtResource("12_aive4")
-
-[node name="Enemy_Bo2" parent="Enemy/Bo_Path2/PathFollow2D" unique_id=117238310 instance=ExtResource("14_bo")]
-position = Vector2(1, 5)
-
-[node name="Sau_Path3" type="Path2D" parent="Enemy" unique_id=913287847]
-position = Vector2(1409, 390)
-curve = SubResource("Curve2D_sau_lv1_3")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Sau_Path3" unique_id=1342806372]
-position = Vector2(600, 848)
-rotates = false
-script = ExtResource("12_aive4")
-
-[node name="Enemy_Sau3" parent="Enemy/Sau_Path3/PathFollow2D" unique_id=1916536416 instance=ExtResource("10_skxlf")]
-
-[node name="Bo_Path_New1" type="Path2D" parent="Enemy" unique_id=2100000101]
-position = Vector2(4100, -16)
-curve = SubResource("Curve2D_bo_new1")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Bo_Path_New1" unique_id=2100000102]
-position = Vector2(-4400, 800)
-rotates = false
-script = ExtResource("12_aive4")
-
-[node name="Enemy_Bo_New1" parent="Enemy/Bo_Path_New1/PathFollow2D" unique_id=2100000001 instance=ExtResource("14_bo")]
-position = Vector2(1, 1)
-
-[node name="Bo_Path_New2" type="Path2D" parent="Enemy" unique_id=2100000103]
-position = Vector2(8628, -251)
-curve = SubResource("Curve2D_bo_new2")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Bo_Path_New2" unique_id=2100000104]
-position = Vector2(-4200, 800)
-rotates = false
-script = ExtResource("12_aive4")
-
-[node name="Enemy_Bo_New2" parent="Enemy/Bo_Path_New2/PathFollow2D" unique_id=2100000002 instance=ExtResource("14_bo")]
-position = Vector2(1, 8)
-
-[node name="Oc_Path_New1" type="Path2D" parent="Enemy" unique_id=2100000105]
-position = Vector2(6646, 440)
-curve = SubResource("Curve2D_oc_new1")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Oc_Path_New1" unique_id=2100000106]
-position = Vector2(-4000, 800)
-rotates = false
-script = ExtResource("12_aive4")
-
-[node name="Enemy_Oc_New1" parent="Enemy/Oc_Path_New1/PathFollow2D" unique_id=2100000003 instance=ExtResource("11_hdc4k")]
-position = Vector2(12, -1)
-
-[node name="Oc_Path_New2" type="Path2D" parent="Enemy" unique_id=2100000107]
-position = Vector2(385, 56)
-curve = SubResource("Curve2D_oc_new2")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Oc_Path_New2" unique_id=2100000108]
-position = Vector2(-3800, 800)
-rotates = false
-script = ExtResource("12_aive4")
-
-[node name="Enemy_Oc_New2" parent="Enemy/Oc_Path_New2/PathFollow2D" unique_id=2100000004 instance=ExtResource("11_hdc4k")]
-
-[node name="Sau_Path_New1" type="Path2D" parent="Enemy" unique_id=2100000109]
-position = Vector2(8954, -183)
-curve = SubResource("Curve2D_sau_new1")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Sau_Path_New1" unique_id=2100000110]
-position = Vector2(-3600, 800)
-rotates = false
-script = ExtResource("12_aive4")
-
-[node name="Enemy_Sau_New1" parent="Enemy/Sau_Path_New1/PathFollow2D" unique_id=2100000005 instance=ExtResource("10_skxlf")]
-
-[node name="Sau_Path_New2" type="Path2D" parent="Enemy" unique_id=2100000111]
-position = Vector2(6791, -201)
-curve = SubResource("Curve2D_sau_new2")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy/Sau_Path_New2" unique_id=2100000112]
-position = Vector2(-3400, 800)
-rotates = false
-script = ExtResource("12_aive4")
-
-[node name="Enemy_Sau_New2" parent="Enemy/Sau_Path_New2/PathFollow2D" unique_id=2100000006 instance=ExtResource("10_skxlf")]
+[node name="Enemy_Bo_New2" parent="Enemy" unique_id=2100000002 instance=ExtResource("14_bo")]
+position = Vector2(4429, 557)
 
 [node name="LevelTransition2" parent="." unique_id=-2094967295 instance=ExtResource("8_b2ana")]
 position = Vector2(6243.0005, 1447)
