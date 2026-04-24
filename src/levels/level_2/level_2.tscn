@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cal4ab2hb2fo4" path="res://src/entities/enemies/enemy_sau/enemy_sau.tscn" id="9_sau"]
 [ext_resource type="PackedScene" uid="uid://xyp1lro7v2mb" path="res://src/entities/enemies/enemy_oc/enemy_oc.tscn" id="10_oc"]
 [ext_resource type="PackedScene" uid="uid://dglhsr0g5y47" path="res://src/entities/enemies/enemy_bo/enemy_bo.tscn" id="11_bo"]
+[ext_resource type="PackedScene" uid="uid://bdw3k6w1p3i4p" path="res://src/ui/gameplay/level_transition/level_transition.tscn" id="12_trans"]
 
 [node name="level_2" type="Node2D" unique_id=1747634334]
 
@@ -74,3 +75,8 @@ position = Vector2(2500, 256)
 
 [node name="Enemy_Bo" parent="Enemy/Bo_Path1/PathFollow2D" unique_id=2000000009 instance=ExtResource("11_bo")]
 position = Vector2(-369, -4)
+
+[node name="BackDoor" parent="." unique_id=2000000010 instance=ExtResource("12_trans")]
+position = Vector2(-2700, 256)
+target_level = "res://src/levels/level_1/level_1.tscn"
+require_all_enemies_dead = false
