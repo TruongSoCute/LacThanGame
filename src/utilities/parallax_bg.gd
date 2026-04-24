@@ -23,9 +23,8 @@ func _setup_layer(layer_node: ParallaxLayer):
 	
 	if sprite and sprite.texture:
 		var tex_width = sprite.texture.get_width() * sprite.scale.x
-		# Nếu chưa thiết lập mirroring hoặc thiết lập sai, tự động tính toán
-		if layer_node.motion_mirroring.x == 0:
-			layer_node.motion_mirroring.x = tex_width
+		# Luôn luôn cập nhật mirroring để tránh việc set tay bị sai trong scene và ép tròn để tránh giật lag float
+		layer_node.motion_mirroring.x = round(tex_width)
 
 func _process(_delta):
 	var cam = get_viewport().get_camera_2d()
