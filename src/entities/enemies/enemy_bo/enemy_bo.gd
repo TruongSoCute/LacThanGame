@@ -10,7 +10,7 @@ extends BasicEnemy
 
 var projectile_scene = preload("res://src/entities/enemies/projectile/projectile.tscn")
 
-enum State { PATROL, CHASE, ATTACK }
+enum State {PATROL, CHASE, ATTACK}
 var current_state = State.PATROL
 var patrol_direction = 1
 var target_player: CharacterBody2D = null
@@ -35,8 +35,8 @@ func _state_logic(delta: float):
 		State.ATTACK:
 			_attack_logic()
 
-func _patrol_logic(delta: float):
-	velocity.x = patrol_direction * speed
+func _patrol_logic(_delta: float):
+	velocity.x = patrol_direction * speed * speed_multiplier
 	if anim: anim.play("move")
 
 	if flip_cooldown <= 0:
@@ -55,7 +55,7 @@ func _chase_logic():
 
 	var dist = global_position.distance_to(target_player.global_position)
 	var dir_to_player = sign(target_player.global_position.x - global_position.x)
-	velocity.x = dir_to_player * chase_speed
+	velocity.x = dir_to_player * chase_speed * speed_multiplier
 	sprite.flip_h = dir_to_player < 0
 	if anim: anim.play("move")
 

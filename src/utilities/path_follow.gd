@@ -20,7 +20,13 @@ func _process(delta: float) -> void:
 			is_waiting = false
 		return
 
-	progress += speed * delta * direction
+	var current_speed_mult = 1.0
+	if get_child_count() > 0:
+		var child = get_child(0)
+		if "speed_multiplier" in child:
+			current_speed_mult = child.speed_multiplier
+
+	progress += speed * delta * direction * current_speed_mult
 	
 	if (direction == 1 and progress_ratio >= 1.0) or (direction == -1 and progress_ratio <= 0.0):
 		direction *= -1

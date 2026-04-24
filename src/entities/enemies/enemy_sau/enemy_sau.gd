@@ -15,7 +15,7 @@ func _setup_enemy():
 		health_bar.value = health
 
 func _state_logic(delta: float):
-	velocity.x = direction * speed
+	velocity.x = direction * speed * speed_multiplier
 	if anim: anim.play("move")
 
 	if flip_cooldown > 0:

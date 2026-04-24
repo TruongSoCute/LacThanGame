@@ -12,6 +12,8 @@ class_name BasicEnemy extends CharacterBody2D
 var is_on_path: bool = false
 var last_pos: Vector2
 var is_dead: bool = false
+var speed_multiplier: float = 1.0
+var boost_tween: Tween
 
 func _ready():
 	is_on_path = get_parent() is PathFollow2D
@@ -65,6 +67,16 @@ func take_damage(amount: int = 1):
 		health_bar.value = health
 	_flash_hit()
 	_apply_knockback()
+	_apply_speed_boost()
+
+func _apply_speed_boost():
+	speed_multiplier = 1.8 # Tăng tốc 80%
+	if boost_tween:
+		boost_tween.kill()
+	
+	boost_tween = create_tween()
+	boost_tween.tween_interval(2.0)
+	boost_tween.tween_callback(func(): speed_multiplier = 1.0)
 
 func _apply_knockback():
 	var player_node = get_tree().get_first_node_in_group("player")
