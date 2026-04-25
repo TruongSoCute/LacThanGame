@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dmhkc71f2lm0l"]
+[gd_scene format=3 uid="uid://new_pause_menu"]
 
-[ext_resource type="Script" uid="uid://b8d6hd4dddq74" path="res://src/ui/menus/language_menu/language_menu.gd" id="1_lang"]
+[ext_resource type="Script" path="res://src/ui/menus/pause_menu/pause_menu.gd" id="1_script"]
 [ext_resource type="FontFile" uid="uid://cqrsxa8d4jox1" path="res://assets/font/Montserrat/Montserrat-Bold.ttf" id="2_font"]
 [ext_resource type="Texture2D" uid="uid://jtqyvppqy2vf" path="res://assets/ui/Background.png" id="3_bg"]
 [ext_resource type="Texture2D" uid="uid://blc8j5qtfagdp" path="res://assets/ui/MENU BUTTON/Variant5.png" id="4_button"]
@@ -12,12 +12,12 @@
 content_margin_top = 10.0
 texture = ExtResource("4_button")
 
-[node name="LanguageMenu" type="Node2D" unique_id=348825684]
-script = ExtResource("1_lang")
+[node name="MenuRoot" type="Node2D"]
+script = ExtResource("1_script")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1487959695]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="TextureRect" parent="CanvasLayer" unique_id=316637966]
+[node name="Panel" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,7 +27,7 @@ texture = ExtResource("3_bg")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Overlay" type="ColorRect" parent="CanvasLayer/Panel" unique_id=821376338]
+[node name="Overlay" type="ColorRect" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="Header" type="HBoxContainer" parent="CanvasLayer/Panel" unique_id=948600177]
+[node name="Header" type="HBoxContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -55,7 +55,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="LineLeft" type="TextureRect" parent="CanvasLayer/Panel/Header/LineLeftContainer" unique_id=180945107]
+[node name="LineLeft" type="TextureRect" parent="CanvasLayer/Panel/Header/LineLeftContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +66,7 @@ grow_vertical = 2
 texture = ExtResource("7_setting")
 expand_mode = 1
 
-[node name="DragonLeft" type="TextureRect" parent="CanvasLayer/Panel/Header" unique_id=299363060]
+[node name="DragonLeft" type="TextureRect" parent="CanvasLayer/Panel/Header"]
 custom_minimum_size = Vector2(180, 180)
 layout_mode = 2
 texture = ExtResource("6_element")
@@ -77,12 +77,12 @@ stretch_mode = 5
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="Title" type="Label" parent="CanvasLayer/Panel/Header" unique_id=1124201896]
+[node name="Title" type="Label" parent="CanvasLayer/Panel/Header"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.87451, 0.77647, 0.52549, 1)
 theme_override_fonts/font = ExtResource("5_title_font")
 theme_override_font_sizes/font_size = 96
-text = "KEY_LANGUAGE"
+text = "KEY_PAUSE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -90,7 +90,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="DragonRight" type="TextureRect" parent="CanvasLayer/Panel/Header" unique_id=118790059]
+[node name="DragonRight" type="TextureRect" parent="CanvasLayer/Panel/Header"]
 custom_minimum_size = Vector2(180, 180)
 layout_mode = 2
 texture = ExtResource("6_element")
@@ -105,7 +105,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="LineRight" type="TextureRect" parent="CanvasLayer/Panel/Header/LineRightContainer" unique_id=1164820551]
+[node name="LineRight" type="TextureRect" parent="CanvasLayer/Panel/Header/LineRightContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,24 +116,24 @@ grow_vertical = 2
 texture = ExtResource("7_setting")
 expand_mode = 1
 
-[node name="LanguageButtons" type="HBoxContainer" parent="CanvasLayer/Panel" unique_id=454336809]
+[node name="MenuButtons" type="VBoxContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -50.0
-offset_right = 300.0
-offset_bottom = 50.0
+offset_left = -215.0
+offset_top = -180.0
+offset_right = 215.0
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 25
 alignment = 1
 
-[node name="Vietnamese" type="Button" parent="CanvasLayer/Panel/LanguageButtons" unique_id=1896879271]
-custom_minimum_size = Vector2(280, 80)
+[node name="Resume" type="Button" parent="CanvasLayer/Panel/MenuButtons"]
+custom_minimum_size = Vector2(430, 70)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
 theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
@@ -145,10 +145,10 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
 theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
-text = "Tiếng Việt"
+text = "KEY_CONTINUE"
 
-[node name="English" type="Button" parent="CanvasLayer/Panel/LanguageButtons" unique_id=1338401561]
-custom_minimum_size = Vector2(280, 80)
+[node name="Save" type="Button" parent="CanvasLayer/Panel/MenuButtons"]
+custom_minimum_size = Vector2(430, 70)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
 theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
@@ -160,9 +160,54 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
 theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
-text = "Tiếng Anh"
+text = "KEY_SAVE"
 
-[node name="FooterLine" type="TextureRect" parent="CanvasLayer/Panel" unique_id=1722705565]
+[node name="Load" type="Button" parent="CanvasLayer/Panel/MenuButtons"]
+custom_minimum_size = Vector2(430, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
+text = "KEY_LOAD"
+
+[node name="Setting" type="Button" parent="CanvasLayer/Panel/MenuButtons"]
+custom_minimum_size = Vector2(430, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
+text = "KEY_OPTION"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/Panel/MenuButtons"]
+custom_minimum_size = Vector2(430, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
+text = "KEY_MENU"
+
+[node name="FooterLine" type="TextureRect" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -177,7 +222,7 @@ grow_vertical = 0
 texture = ExtResource("7_setting")
 expand_mode = 1
 
-[node name="Back" type="Button" parent="CanvasLayer/Panel" unique_id=810805269]
+[node name="Back" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -202,6 +247,9 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
 text = "KEY_BACK"
 
-[connection signal="pressed" from="CanvasLayer/Panel/LanguageButtons/Vietnamese" to="." method="_on_vietnamese_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/LanguageButtons/English" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuButtons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuButtons/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuButtons/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuButtons/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuButtons/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/Back" to="." method="_on_back_pressed"]

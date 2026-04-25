@@ -15,8 +15,8 @@ func _on_vietnamese_pressed() -> void:
 	update_button_styles()
 
 func update_button_styles():
-	var en_btn = $CanvasLayer/Panel/VBoxContainer/English
-	var vi_btn = $CanvasLayer/Panel/VBoxContainer/Vietnamese
+	var en_btn = $CanvasLayer/Panel/LanguageButtons/English
+	var vi_btn = $CanvasLayer/Panel/LanguageButtons/Vietnamese
 	
 	en_btn.modulate = Color(1, 1, 1)
 	vi_btn.modulate = Color(1, 1, 1)
@@ -26,11 +26,11 @@ func update_button_styles():
 	
 	if Localization.current_lang == "en":
 		en_btn.modulate = Color(1, 1, 0)
-		en_btn.text = "▶ " + en_text
+		en_btn.text = en_text + " ✓"
 		vi_btn.text = vi_text
 	elif Localization.current_lang == "vi":
 		vi_btn.modulate = Color(1, 1, 0)
-		vi_btn.text = "▶ " + vi_text
+		vi_btn.text = vi_text + " ✓"
 		en_btn.text = en_text
 
 func _on_back_pressed() -> void:

@@ -1,33 +1,120 @@
 [gd_scene format=3 uid="uid://b8t1x5o4v8w3n"]
 
 [ext_resource type="Script" uid="uid://keyboard_setting_script" path="res://src/ui/menus/keyboard_setting/keyboard_setting.gd" id="1_kb"]
+[ext_resource type="FontFile" uid="uid://cqrsxa8d4jox1" path="res://assets/font/Montserrat/Montserrat-Bold.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://jtqyvppqy2vf" path="res://assets/ui/Background.png" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://blc8j5qtfagdp" path="res://assets/ui/MENU BUTTON/Variant5.png" id="4_button"]
+[ext_resource type="FontFile" uid="uid://df0ioa330dg5x" path="res://assets/font/SVN-Rebahan/SVN-Rebahan.otf" id="5_title_font"]
+[ext_resource type="Texture2D" uid="uid://c7j5opromcpj2" path="res://assets/ui/element.png" id="6_element"]
+[ext_resource type="Texture2D" uid="uid://dpdmrs5vejifx" path="res://assets/ui/setting.png" id="7_setting"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn"]
+texture = ExtResource("4_button")
+content_margin_top = 10.0
 
 [node name="KeyboardSetting" type="Node2D"]
 script = ExtResource("1_kb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Title" type="Label" parent="CanvasLayer/Panel"]
+[node name="Overlay" type="ColorRect" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Header" type="HBoxContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -200.0
-offset_top = 50.0
-offset_right = 200.0
-offset_bottom = 120.0
+offset_left = -850.0
+offset_top = 60.0
+offset_right = 850.0
+offset_bottom = 240.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "KEY_KEYBOARD"
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LineLeftContainer" type="Control" parent="CanvasLayer/Panel/Header"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="LineLeft" type="TextureRect" parent="CanvasLayer/Panel/Header/LineLeftContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_setting")
+expand_mode = 1
+
+[node name="DragonLeft" type="TextureRect" parent="CanvasLayer/Panel/Header"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+texture = ExtResource("6_element")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpacerLeft" type="Control" parent="CanvasLayer/Panel/Header"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Panel/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.77647, 0.52549, 1)
+theme_override_fonts/font = ExtResource("5_title_font")
+theme_override_font_sizes/font_size = 96
+text = "KEY_KEYBOARD_SETTING"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SpacerRight" type="Control" parent="CanvasLayer/Panel/Header"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="DragonRight" type="TextureRect" parent="CanvasLayer/Panel/Header"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+texture = ExtResource("6_element")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="LineRightContainer" type="Control" parent="CanvasLayer/Panel/Header"]
+show_behind_parent = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="LineRight" type="TextureRect" parent="CanvasLayer/Panel/Header/LineRightContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_setting")
+expand_mode = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
@@ -37,9 +124,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -400.0
-offset_top = -300.0
+offset_top = -150.0
 offset_right = 400.0
-offset_bottom = 300.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -48,20 +135,44 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="Back" type="Button" parent="CanvasLayer/Panel"]
+[node name="FooterLine" type="TextureRect" parent="CanvasLayer/Panel"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -250.0
-offset_right = 100.0
-offset_bottom = -180.0
+offset_left = 100.0
+offset_top = -177.0
+offset_right = -100.0
+offset_bottom = -140.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+texture = ExtResource("7_setting")
+expand_mode = 1
+
+[node name="Back" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -358.0
+offset_top = -149.0
+offset_right = -138.0
+offset_bottom = -79.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
 text = "KEY_BACK"
 
 [connection signal="pressed" from="CanvasLayer/Panel/Back" to="." method="_on_back_pressed"]
