@@ -23,7 +23,12 @@ var data = {
 		"KEY_JUMP": "NHẢY",
 		"KEY_DASH": "LƯỚT",
 		"KEY_ATTACK": "TẤN CÔNG",
-		"KEY_HEAL": "HỒI MÁU"
+		"KEY_HEAL": "HỒI MÁU",
+		"KEY_PAUSE": "TẠM DỪNG",
+		"KEY_KEYBOARD_SETTING": "CÀI ĐẶT PHÍM",
+		"KEY_SAVE": "LƯU GAME",
+		"KEY_LOAD": "TẢI GAME",
+		"KEY_MENU": "MENU CHÍNH"
 	},
 	"en": {
 		"KEY_START": "START",
@@ -42,7 +47,12 @@ var data = {
 		"KEY_JUMP": "JUMP",
 		"KEY_DASH": "DASH",
 		"KEY_ATTACK": "ATTACK",
-		"KEY_HEAL": "HEAL"
+		"KEY_HEAL": "HEAL",
+		"KEY_PAUSE": "PAUSE",
+		"KEY_KEYBOARD_SETTING": "KEYBOARD SETTINGS",
+		"KEY_SAVE": "SAVE GAME",
+		"KEY_LOAD": "LOAD GAME",
+		"KEY_MENU": "MAIN MENU"
 	}
 }
 

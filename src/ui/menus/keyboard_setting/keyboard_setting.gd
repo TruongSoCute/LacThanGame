@@ -15,8 +15,12 @@ var remapping_action = null
 var remapping_button = null
 
 var custom_font = preload("res://assets/font/Montserrat/Montserrat-Bold.ttf")
+var button_tex = preload("res://assets/ui/MENU BUTTON/Variant5.png")
+var button_style = StyleBoxTexture.new()
 
 func _ready():
+	button_style.texture = button_tex
+	button_style.content_margin_top = 10.0
 	Localization.translate_node(self)
 	create_action_list()
 
@@ -35,6 +39,14 @@ func create_action_list():
 		button.custom_minimum_size.x = 200
 		button.add_theme_font_override("font", custom_font)
 		button.add_theme_font_size_override("font_size", 24)
+		button.add_theme_stylebox_override("normal", button_style)
+		button.add_theme_stylebox_override("hover", button_style)
+		button.add_theme_stylebox_override("pressed", button_style)
+		button.add_theme_stylebox_override("focus", button_style)
+		button.add_theme_color_override("font_color", Color(0.423, 0.349, 0.168))
+		button.add_theme_color_override("font_hover_color", Color(0.423, 0.349, 0.168))
+		button.add_theme_color_override("font_pressed_color", Color(0.423, 0.349, 0.168))
+		button.alignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_CENTER
 		button.text = get_current_key_text(action)
 		button.pressed.connect(_on_remap_button_pressed.bind(action, button))
 		

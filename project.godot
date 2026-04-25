@@ -26,7 +26,7 @@ SceneManager="*res://src/core/scene_manager.gd"
 Localization="*res://src/core/localization_manager.gd"
 AudioManager="*res://src/core/audio_manager.gd"
 SceneTransition="*res://src/core/scene_transition.gd"
-PauseMenu="*res://src/ui/menus/pause_menu/pause_menu.gd"
+PauseMenu="*res://src/ui/menus/pause_menu/pause_menu.tscn"
 
 [display]
 
