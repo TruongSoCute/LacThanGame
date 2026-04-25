@@ -14,6 +14,8 @@ var actions = {
 var remapping_action = null
 var remapping_button = null
 
+var custom_font = preload("res://assets/font/Montserrat/Montserrat-Bold.ttf")
+
 func _ready():
 	Localization.translate_node(self)
 	create_action_list()
@@ -26,10 +28,12 @@ func create_action_list():
 		var label = Label.new()
 		label.text = Localization.get_text(actions[action])
 		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		label.add_theme_font_override("font", custom_font)
 		label.add_theme_font_size_override("font_size", 24) 
 		
 		var button = Button.new()
 		button.custom_minimum_size.x = 200
+		button.add_theme_font_override("font", custom_font)
 		button.add_theme_font_size_override("font_size", 24)
 		button.text = get_current_key_text(action)
 		button.pressed.connect(_on_remap_button_pressed.bind(action, button))

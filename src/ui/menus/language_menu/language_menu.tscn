@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dmhkc71f2lm0l"]
 
 [ext_resource type="Script" uid="uid://language_menu_script" path="res://src/ui/menus/language_menu/language_menu.gd" id="1_lang"]
+[ext_resource type="FontFile" uid="uid://cqrsxa8d4jox1" path="res://assets/font/Montserrat/Montserrat-Bold.ttf" id="2_font"]
 
 [node name="LanguageMenu" type="Node2D"]
 script = ExtResource("1_lang")
@@ -24,6 +25,7 @@ offset_top = 150.0
 offset_right = 200.0
 offset_bottom = 230.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 48
 text = "KEY_SELECT_LANG"
 horizontal_alignment = 1
@@ -47,18 +49,21 @@ theme_override_constants/separation = 20
 [node name="English" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
 text = "English"
 
 [node name="Vietnamese" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
 text = "Tiếng Việt"
 
 [node name="Back" type="Button" parent="CanvasLayer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
 text = "KEY_BACK"
 

@@ -2,75 +2,107 @@
 
 [ext_resource type="Script" uid="uid://bhga78jgan3k" path="res://src/ui/menus/main_menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://cg8admvuakr4n" path="res://assets/ui/Main_Background.png" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://blc8j5qtfagdp" path="res://assets/ui/MENU BUTTON/Variant5.png" id="3_button"]
+[ext_resource type="FontFile" uid="uid://cqrsxa8d4jox1" path="res://assets/font/Montserrat/Montserrat-ExtraBold.ttf" id="4_font"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
-bg_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
-bg_color = Color(0.74978, 0.74978, 0.7497799, 1)
-
-[sub_resource type="ImageTexture" id="ImageTexture_ekxnf"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn"]
+texture = ExtResource("3_button")
+content_margin_top = 10.0
 
 [node name="Main menu" type="Node2D" unique_id=801586398]
 script = ExtResource("1_l6cm7")
 metadata/_edit_vertical_guides_ = [999.0]
 
-[node name="Button Manager" type="Control" parent="." unique_id=1423713784]
-layout_mode = 3
-anchors_preset = 0
-offset_top = 80.525
-offset_right = 40.0
-offset_bottom = 120.52494
-size_flags_horizontal = 4
-size_flags_vertical = 4
-metadata/_edit_use_anchors_ = true
+[node name="Button Manager" type="VBoxContainer" parent="." unique_id=1423713784]
+offset_left = 193.0
+offset_top = 480.0
+offset_right = 731.0
+offset_bottom = 1032.0
+theme_override_constants/separation = 43
 
 [node name="continue" type="Button" parent="Button Manager" unique_id=1791993267]
-layout_mode = 0
-offset_left = 707.0
-offset_top = 330.0
-offset_right = 1245.0
-offset_bottom = 434.0
+custom_minimum_size = Vector2(538, 104)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("4_font")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
+alignment = 1
 text = "KEY_CONTINUE"
 
 [node name="start" type="Button" parent="Button Manager" unique_id=14931492]
-layout_mode = 0
-offset_left = 707.0
-offset_top = 477.0
-offset_right = 1245.0
-offset_bottom = 581.0
+custom_minimum_size = Vector2(538, 104)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("4_font")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_l6cm7")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
+alignment = 1
 text = "KEY_NEW_GAME"
-icon = SubResource("ImageTexture_ekxnf")
 
 [node name="option" type="Button" parent="Button Manager" unique_id=1045547954]
-layout_mode = 0
-offset_left = 708.0
-offset_top = 624.0
-offset_right = 1246.0
-offset_bottom = 728.0
+custom_minimum_size = Vector2(538, 104)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("4_font")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
+alignment = 1
 text = "KEY_OPTION"
 
 [node name="exit" type="Button" parent="Button Manager" unique_id=1475378426]
-layout_mode = 0
-offset_left = 709.0
-offset_top = 778.0
-offset_right = 1247.0
-offset_bottom = 882.0
+custom_minimum_size = Vector2(538, 104)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("4_font")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
+alignment = 1
 text = "KEY_EXIT"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1113976149]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1692519271]
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1471402287]
-position = Vector2(960, 537)
+[node name="Background" type="TextureRect" parent="ParallaxBackground/ParallaxLayer" unique_id=1471402287]
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
 texture = ExtResource("2_ekxnf")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Control" type="Control" parent="." unique_id=592096778]
 visible = false
@@ -85,6 +117,11 @@ offset_left = 726.0
 offset_top = 307.0
 offset_right = 1234.0
 offset_bottom = 407.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_btn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn")
 
 [node name="Label" type="Label" parent="Control/Button" unique_id=2086854131]
 layout_mode = 1
@@ -95,6 +132,10 @@ offset_top = -3.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.423529, 0.34902, 0.168627, 1)
+theme_override_fonts/font = ExtResource("4_font")
+horizontal_alignment = 1
+vertical_alignment = 1
 text = "Bắt đầu
 "
 

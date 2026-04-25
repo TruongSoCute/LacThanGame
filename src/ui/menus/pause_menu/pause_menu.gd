@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var _root: Control
 var _visible: bool = false
+var custom_font = preload("res://assets/font/Montserrat/Montserrat-Bold.ttf")
 
 func _ready() -> void:
 	layer = 50
@@ -44,6 +45,7 @@ func _build_ui() -> void:
 	var title = Label.new()
 	title.text = "TẠM DỪNG"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.add_theme_font_override("font", custom_font)
 	title.add_theme_font_size_override("font_size", 26)
 	vbox.add_child(title)
 
@@ -60,6 +62,7 @@ func _add_button(parent: Node, text: String, callback: Callable) -> void:
 	var btn = Button.new()
 	btn.text = text
 	btn.custom_minimum_size = Vector2(280, 50)
+	btn.add_theme_font_override("font", custom_font)
 	btn.add_theme_font_size_override("font_size", 18)
 	btn.pressed.connect(callback)
 	parent.add_child(btn)

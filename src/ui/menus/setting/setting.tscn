@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://crol34dw6h408"]
 
 [ext_resource type="Script" uid="uid://7pw1fp84lg3u" path="res://src/ui/menus/setting/setting.gd" id="1_sjyvh"]
+[ext_resource type="FontFile" uid="uid://cqrsxa8d4jox1" path="res://assets/font/Montserrat/Montserrat-Bold.ttf" id="2_font"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u58eq"]
 bg_color = Color(0.8285606, 0.8136063, 0.9403969, 1)
@@ -20,6 +21,7 @@ offset_left = 755.0
 offset_top = 365.0
 offset_right = 1186.0
 offset_bottom = 451.0
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
 text = "KEY_KEYBOARD"
 
@@ -29,6 +31,7 @@ offset_left = 755.0
 offset_top = 464.0
 offset_right = 1186.0
 offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
 text = "KEY_LANGUAGE"
 
@@ -39,6 +42,7 @@ offset_top = 574.0
 offset_right = 1186.0
 offset_bottom = 660.0
 theme_override_colors/font_color = Color(0.043039, 0.04303924, 0.043039076, 1)
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_u58eq")
 text = "KEY_BACK"
