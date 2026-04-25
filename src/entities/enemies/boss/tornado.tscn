@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/entities/enemies/boss/tornado.gd" id="1_t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t"]
+radius = 30.0
+
+[node name="Tornado" type="Area2D"]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

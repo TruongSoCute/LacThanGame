@@ -1,57 +1,201 @@
-[gd_scene load_steps=4 format=3 uid="uid://pjgnoy1rno48"]
+[gd_scene format=3 uid="uid://pjgnoy1rno48"]
 
-[ext_resource type="Texture2D" uid="uid://ovjc4f2xjbho" path="res://src/entities/enemies/boss/sprites/Boss_1.png" id="1_s701o"]
+[ext_resource type="Script" uid="uid://bc1itnsw1igbi" path="res://src/entities/enemies/boss/boss.gd" id="1_boss"]
+[ext_resource type="Texture2D" uid="uid://cxlkuqrukam3o" path="res://src/entities/enemies/boss/sprites/Boss_attack.png" id="2_rk8go"]
+[ext_resource type="PackedScene" uid="uid://c8n4y8n4y8n4y" path="res://src/components/health_bar/health_bar.tscn" id="3_hbar"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cd6w7"]
-radius = 88.0
-height = 240.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeu4n"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(0, 0, 283, 280)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s701o"]
-radius = 552.0
-height = 2880.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_avq61"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(283, 0, 283, 280)
 
-[node name="Boss" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkjpy"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(566, 0, 283, 280)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
-texture = ExtResource("1_s701o")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6upok"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(849, 0, 283, 280)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-16, 0)
-shape = SubResource("CapsuleShape2D_cd6w7")
-disabled = true
+[sub_resource type="AtlasTexture" id="AtlasTexture_hggha"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(1132, 0, 283, 280)
 
-[node name="PlayerDetect" type="Area2D" parent="."]
+[sub_resource type="AtlasTexture" id="AtlasTexture_smg0m"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(1415, 0, 283, 280)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
-position = Vector2(32, 560)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_s701o")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jph2"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(1698, 0, 283, 280)
 
-[node name="RayCast" type="Node2D" parent="."]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2cgb"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(1981, 0, 283, 280)
 
-[node name="RayCastRight" type="RayCast2D" parent="RayCast"]
-target_position = Vector2(288, 0)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7dtm"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(0, 0, 283, 280)
 
-[node name="RayCastLeft" type="RayCast2D" parent="RayCast"]
-target_position = Vector2(-288, 0)
+[sub_resource type="AtlasTexture" id="AtlasTexture_188c1"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(283, 0, 283, 280)
 
-[node name="StateMachine" type="Node2D" parent="."]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6w4n"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(566, 0, 283, 280)
 
-[node name="Idle State" type="Node2D" parent="StateMachine"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_35xte"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(849, 0, 283, 280)
 
-[node name="Patrol State" type="Node2D" parent="StateMachine"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaupw"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(1132, 0, 283, 280)
 
-[node name="Chase" type="Node2D" parent="StateMachine"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hn4g"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(1415, 0, 283, 280)
 
-[node name="Attack 1 State" type="Node2D" parent="StateMachine"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm1ng"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(1698, 0, 283, 280)
 
-[node name="VanishTimer" type="Timer" parent="StateMachine/Attack 1 State"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqnqb"]
+atlas = ExtResource("2_rk8go")
+region = Rect2(1981, 0, 283, 280)
 
-[node name="Attack 2 State" type="Node2D" parent="StateMachine"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_boss"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeu4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avq61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkjpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6upok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hggha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smg0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jph2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2cgb")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7dtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_188c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6w4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35xte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaupw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hn4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm1ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqnqb")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}]
 
-[node name="Hurt State" type="Node2D" parent="StateMachine"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+radius = 70.0
+height = 180.0
 
-[node name="Dead State" type="Node2D" parent="StateMachine"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hurt"]
+radius = 100.0
 
-[node name="Mandatory Idle State" type="Node2D" parent="StateMachine"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
+radius = 95.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
+radius = 900.0
+
+[node name="Boss" type="CharacterBody2D" unique_id=936268078 groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_boss")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=617498309]
+sprite_frames = SubResource("SpriteFrames_boss")
+animation = &"fly"
+autoplay = "fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078123571]
+shape = SubResource("CapsuleShape2D_body")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1230695030]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=646289058]
+shape = SubResource("CircleShape2D_hurt")
+debug_color = Color(0.1, 0.6, 0.6, 0.42)
+
+[node name="HitBox" type="Area2D" parent="." unique_id=110223843]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=196597077]
+shape = SubResource("CircleShape2D_hit")
+debug_color = Color(0.8, 0.2, 0.2, 0.42)
+
+[node name="DetectArea" type="Area2D" parent="." unique_id=1200254201]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea" unique_id=1743699154]
+shape = SubResource("CircleShape2D_detect")
+debug_color = Color(1, 1, 0, 0.08)
+
+[node name="ShootPoint" type="Marker2D" parent="." unique_id=256577578]
+position = Vector2(140, 0)
+
+[node name="GroundRay" type="RayCast2D" parent="." unique_id=140549799]
+enabled = true
+collision_mask = 1
+target_position = Vector2(0, 2000)
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=529172658]
+wait_time = 2.0
+one_shot = true
+
+[node name="HealthBar" parent="." unique_id=195265437 instance=ExtResource("3_hbar")]
+offset_top = -200.0
+offset_bottom = -190.0
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
+[connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

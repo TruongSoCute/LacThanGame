@@ -19,7 +19,9 @@ func _ready() -> void:
 		new_heart.texture = $heart.texture
 		new_heart.hframes = $heart.hframes
 		$heart.add_child(new_heart)
-	
+	# Hide the template sprite itself — children stay visible
+	$heart.self_modulate = Color(1, 1, 1, 0)
+
 	prev_health = Globals.health
 	Globals.health_changed.connect(_on_health_changed)
 	Globals.player_died.connect(_on_player_died)

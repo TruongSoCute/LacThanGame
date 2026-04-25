@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dy7no4nvr8adb"]
+
+[ext_resource type="Texture2D" uid="uid://cxlkuqrukam3o" path="res://src/entities/enemies/boss/sprites/Boss_attack.png" id="1_yvqeb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nkop"]
+atlas = ExtResource("1_yvqeb")
+region = Rect2(0, 0, 283, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcanj"]
+atlas = ExtResource("1_yvqeb")
+region = Rect2(283, 0, 283, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud0n4"]
+atlas = ExtResource("1_yvqeb")
+region = Rect2(566, 0, 283, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i8j1"]
+atlas = ExtResource("1_yvqeb")
+region = Rect2(849, 0, 283, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sgha"]
+atlas = ExtResource("1_yvqeb")
+region = Rect2(1132, 0, 283, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aj0e"]
+atlas = ExtResource("1_yvqeb")
+region = Rect2(1415, 0, 283, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n16u"]
+atlas = ExtResource("1_yvqeb")
+region = Rect2(1698, 0, 283, 280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i6ls"]
+atlas = ExtResource("1_yvqeb")
+region = Rect2(1981, 0, 283, 280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3jufl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nkop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcanj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud0n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i8j1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sgha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0aj0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n16u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i6ls")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7i6ls"]
+size = Vector2(62, 92)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2071290838]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2028410267]
+sprite_frames = SubResource("SpriteFrames_3jufl")
+autoplay = "default"
+frame_progress = 0.62227005
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2027391191]
+position = Vector2(15, -9)
+shape = SubResource("RectangleShape2D_7i6ls")

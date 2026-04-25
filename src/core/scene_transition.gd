@@ -16,8 +16,6 @@ func fade_to_level(target_level: String, door_tag: String) -> void:
 	t1.tween_property(_overlay, "color:a", 1.0, 0.3)
 	await t1.finished
 	SceneManager.spawn_door_tag = door_tag
-	Globals.health = Globals.max_health
-	Globals.soul = 0.0
 	get_tree().change_scene_to_file(target_level)
 	await get_tree().process_frame
 	await get_tree().process_frame
