@@ -8,6 +8,7 @@ var current_lang = "vi"
 var data = {
 	"vi": {
 		"KEY_START": "BẮT ĐẦU",
+		"KEY_NEW_GAME": "GAME MỚI",
 		"KEY_OPTION": "CÀI ĐẶT",
 		"KEY_EXIT": "THOÁT",
 		"KEY_CONTINUE": "TIẾP TỤC",
@@ -26,6 +27,7 @@ var data = {
 	},
 	"en": {
 		"KEY_START": "START",
+		"KEY_NEW_GAME": "NEW GAME",
 		"KEY_OPTION": "SETTINGS",
 		"KEY_EXIT": "EXIT",
 		"KEY_CONTINUE": "CONTINUE",

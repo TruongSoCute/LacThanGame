@@ -98,3 +98,4 @@ position = Vector2(6525.0005, 654)
 rotation = 6.2831855
 scale = Vector2(2.03, 2.03)
 target_level = "res://src/levels/level_1/level_1.tscn"
+spawn_tag = "level_0_exit"

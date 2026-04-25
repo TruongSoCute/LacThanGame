@@ -18,8 +18,22 @@ func _ready() -> void:
 
 func _reposition_player() -> void:
 	var player = get_parent().get_node_or_null("Player")
-	if player:
-		player.global_position = global_position + Vector2(-350, 0)
+	if not player:
+		return
+	player.velocity = Vector2.ZERO
+	var spawn_x = global_position.x - 350
+	var space = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(
+		Vector2(spawn_x, global_position.y - 400),
+		Vector2(spawn_x, global_position.y + 400),
+		2
+	)
+	query.exclude = [player.get_rid()]
+	var hit = space.intersect_ray(query)
+	if hit:
+		player.global_position = Vector2(spawn_x, hit.position.y - 65)
+	else:
+		player.global_position = global_position + Vector2(-350, -100)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") or body.is_in_group("Player"):
@@ -31,7 +45,4 @@ func _change_level() -> void:
 	if target_level == "":
 		print("LevelTransition: target_level chưa được thiết lập!")
 		return
-	SceneManager.spawn_door_tag = transition_tag
-	Globals.health = Globals.max_health
-	Globals.soul = 0.0
-	get_tree().change_scene_to_file(target_level)
+	SceneTransition.fade_to_level(target_level, transition_tag)

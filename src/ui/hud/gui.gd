@@ -82,13 +82,11 @@ func _on_player_died():
 	game_over_panel.visible = true
 
 func _on_restart_pressed():
-	Globals.health = 4
-	Globals.soul = 0
+	Globals.reset_run_state()
 	get_tree().reload_current_scene()
 
 func _on_home_pressed():
-	Globals.health = 4
-	Globals.soul = 0
+	Globals.reset_run_state()
 	get_tree().change_scene_to_file("res://src/ui/menus/main_menu/main_menu.tscn")
 
 func show_message(text: String):

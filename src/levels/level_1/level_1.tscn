@@ -53,6 +53,7 @@ tile_set = ExtResource("7_6jaql")
 position = Vector2(-5699, 806)
 scale = Vector2(3.985, 3.985)
 target_level = "res://src/levels/level_0/level_0.tscn"
+transition_tag = "level_0_exit"
 
 [node name="Enemy" type="Node2D" parent="." unique_id=1595482798]
 
@@ -99,5 +100,6 @@ position = Vector2(4429, 557)
 position = Vector2(7032, 1576)
 scale = Vector2(3.44, 3.667)
 target_level = "res://src/levels/level_2/level_2.tscn"
+spawn_tag = "level_1_exit"
 
 [node name="GUI2" parent="." unique_id=1784435613 instance=ExtResource("2_k4ctk")]

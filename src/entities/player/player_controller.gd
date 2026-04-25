@@ -89,6 +89,10 @@ func _ready() -> void:
 		add_child(player)
 		sfx_players[key] = player
 
+	if Globals.has_load_position:
+		Globals.has_load_position = false
+		global_position = Globals.saved_player_pos
+
 # ─── Main loop ───────────────────────────────────────────────────────────────
 
 func _physics_process(delta: float) -> void:

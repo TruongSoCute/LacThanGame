@@ -11,7 +11,13 @@ class_name BasicEnemy extends CharacterBody2D
 var is_dead: bool = false
 var knockback_timer: float = 0.0
 
+func _get_death_key() -> String:
+	return scene_file_path + "::" + str(get_path())
+
 func _ready():
+	if Globals.is_enemy_dead(_get_death_key()):
+		queue_free()
+		return
 	if health_bar:
 		health_bar.max_value = health
 		health_bar.value = health
@@ -67,6 +73,7 @@ func _flash_hit():
 
 func _die():
 	is_dead = true
+	Globals.mark_enemy_dead(_get_death_key())
 	collision_layer = 0
 	collision_mask = 0
 

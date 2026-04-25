@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://y0d7damr53uh"]
+[gd_scene format=3 uid="uid://y0d7damr53uh"]
 
-[ext_resource type="Script" uid="uid://bi1chbxxhcqbo" path="res://src/ui/menus/main_menu/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://bhga78jgan3k" path="res://src/ui/menus/main_menu/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://cg8admvuakr4n" path="res://assets/ui/Main_Background.png" id="2_ekxnf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
@@ -11,20 +11,30 @@ bg_color = Color(0.74978, 0.74978, 0.7497799, 1)
 
 [sub_resource type="ImageTexture" id="ImageTexture_ekxnf"]
 
-[node name="Main menu" type="Node2D"]
+[node name="Main menu" type="Node2D" unique_id=801586398]
 script = ExtResource("1_l6cm7")
 metadata/_edit_vertical_guides_ = [999.0]
 
-[node name="Button Manager" type="Control" parent="."]
+[node name="Button Manager" type="Control" parent="." unique_id=1423713784]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 80.525
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 120.52494
 size_flags_horizontal = 4
 size_flags_vertical = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="start" type="Button" parent="Button Manager"]
+[node name="continue" type="Button" parent="Button Manager" unique_id=1791993267]
+layout_mode = 0
+offset_left = 707.0
+offset_top = 330.0
+offset_right = 1245.0
+offset_bottom = 434.0
+theme_override_font_sizes/font_size = 32
+text = "KEY_CONTINUE"
+
+[node name="start" type="Button" parent="Button Manager" unique_id=14931492]
 layout_mode = 0
 offset_left = 707.0
 offset_top = 477.0
@@ -33,10 +43,10 @@ offset_bottom = 581.0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
-text = "KEY_START"
+text = "KEY_NEW_GAME"
 icon = SubResource("ImageTexture_ekxnf")
 
-[node name="option" type="Button" parent="Button Manager"]
+[node name="option" type="Button" parent="Button Manager" unique_id=1045547954]
 layout_mode = 0
 offset_left = 708.0
 offset_top = 624.0
@@ -45,7 +55,7 @@ offset_bottom = 728.0
 theme_override_font_sizes/font_size = 32
 text = "KEY_OPTION"
 
-[node name="exit" type="Button" parent="Button Manager"]
+[node name="exit" type="Button" parent="Button Manager" unique_id=1475378426]
 layout_mode = 0
 offset_left = 709.0
 offset_top = 778.0
@@ -54,29 +64,29 @@ offset_bottom = 882.0
 theme_override_font_sizes/font_size = 32
 text = "KEY_EXIT"
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1113976149]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1692519271]
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1471402287]
 position = Vector2(960, 537)
 texture = ExtResource("2_ekxnf")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=592096778]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Button" type="Button" parent="Control" unique_id=1735716572]
 layout_mode = 0
 offset_left = 726.0
 offset_top = 307.0
 offset_right = 1234.0
 offset_bottom = 407.0
 
-[node name="Label" type="Label" parent="Control/Button"]
+[node name="Label" type="Label" parent="Control/Button" unique_id=2086854131]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,14 +98,14 @@ grow_vertical = 2
 text = "Bắt đầu
 "
 
-[node name="Container" type="Container" parent="Control"]
+[node name="Container" type="Container" parent="Control" unique_id=1471965456]
 layout_mode = 0
 offset_left = 689.0
 offset_top = 459.0
 offset_right = 1260.0
 offset_bottom = 904.0
 
-[connection signal="pressed" from="Button Manager/start" to="." method="_on_star_pressed"]
+[connection signal="pressed" from="Button Manager/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Button Manager/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button Manager/option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="Button Manager/exit" to="." method="_on_exit_pressed"]

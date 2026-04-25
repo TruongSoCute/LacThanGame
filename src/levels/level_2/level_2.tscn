@@ -79,4 +79,4 @@ position = Vector2(-369, -4)
 [node name="BackDoor" parent="." unique_id=2000000010 instance=ExtResource("12_trans")]
 position = Vector2(-2700, 256)
 target_level = "res://src/levels/level_1/level_1.tscn"
-require_all_enemies_dead = false
+transition_tag = "level_1_exit"
